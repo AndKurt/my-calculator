@@ -1,10 +1,7 @@
 {
+  "extends": "./tsconfig.path.json",
   "compilerOptions": {
     "target": "es5",
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./src/*"],
-    },
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
@@ -21,5 +18,5 @@
     "jsx": "react-jsx",
     "noImplicitAny": false
   },
-  "include": ["src", "declaration.d.ts"]
+  "include": ["src"]
 }
