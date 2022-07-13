@@ -1,13 +1,14 @@
+import React, { Fragment } from 'react'
 import { Header } from '@components/Header'
 import { Router } from '@components/Router'
-import React from 'react'
+import { GlobalStyles } from '@styles/globalStyles'
 
 export const App = () => {
 	return (
-		<div>
-			App
+		<Fragment>
 			<Header />
 			<Router />
-		</div>
+			<GlobalStyles />
+		</Fragment>
 	)
 }

@@ -1,3 +1,1 @@
-import { Calculation } from './Calculation'
-
-export { Calculation }
+export { Calculation } from './Calculation'

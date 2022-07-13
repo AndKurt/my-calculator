@@ -1,3 +1,1 @@
-import { ControlPanel } from "./ControlPanel";
-
-export {ControlPanel}
+export { ControlPanel } from './ControlPanel'

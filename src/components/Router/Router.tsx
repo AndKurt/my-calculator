@@ -4,6 +4,7 @@ import { SettingsPage } from '@screens/SettingsPage'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import {
 	HOME_PAGE_ROUTE,
+	HOME_CLASS_PAGE_ROUTE,
 	SETTINGS_PAGE_ROUTE,
 } from '@constants/router'
 
@@ -12,6 +13,10 @@ export const Router = () => {
 		<Routes>
 			<Route
 				path={HOME_PAGE_ROUTE}
+				element={<HomePage />}
+			/>
+			<Route
+				path={HOME_CLASS_PAGE_ROUTE}
 				element={<HomePage />}
 			/>
 			<Route

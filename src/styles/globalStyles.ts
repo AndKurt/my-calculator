@@ -1,0 +1,51 @@
+import { createGlobalStyle } from 'styled-components'
+import HelveticaNeue from '../assets/fonts/HelveticaNeue.ttf'
+
+import theme from './theme'
+
+interface IGlobalStyle {
+	[key: string]: string;
+}
+
+export const GlobalStyles =
+	createGlobalStyle <
+	{ theme: IGlobalStyle } >
+	`
+  @font-face {
+    font-family: 'Helvetica Neue';
+    src: url(${HelveticaNeue}) format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    ${theme.font};
+  }
+
+  html, body {
+    width: 100%;
+    height: 100%;
+  }
+
+  body {
+    & > #root {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  body {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  #root {
+    display: flex;
+    flex-direction: column;
+    background: ${theme.colors.white};
+  }
+`
