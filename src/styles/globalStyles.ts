@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle } from 'styled-components/macro'
 import HelveticaNeue from '../assets/fonts/HelveticaNeue.ttf'
 
 import theme from './theme'
@@ -47,5 +47,23 @@ export const GlobalStyles =
     display: flex;
     flex-direction: column;
     background: ${theme.colors.white};
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    border-radius: 5px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: ${theme.colors.darkGrey};
+    border: 1px solid $blue;
+    border-radius: 5px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: $blue;
   }
 `

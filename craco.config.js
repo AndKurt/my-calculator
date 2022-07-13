@@ -7,18 +7,18 @@ module.exports = {
 			'@assets': path.resolve(__dirname, 'src/assets/'),
 			'@components': path.resolve(
 				__dirname,
-				'src/components/',
+				'src/components/'
 			),
 			'@constants': path.resolve(
 				__dirname,
-				'src/constants/',
+				'src/constants/'
 			),
 			'@styles': path.resolve(__dirname, 'src/styles/'),
 			'@screens': path.resolve(__dirname, 'src/screens/'),
 			'@utils': path.resolve(__dirname, 'src/utils/'),
 			'@interfaces': path.resolve(
 				__dirname,
-				'src/interfaces/',
+				'src/interfaces/'
 			),
 		},
 	},

@@ -1,10 +1,10 @@
-import styled from 'styled-components'
+import styled from 'styled-components/macro'
 import theme from '@styles/theme'
 
 export const CalculationWrapper = styled.div`
 	display: flex;
 	height: 100%;
-	width: 80%;
+	width: 100%;
 `
 
 export const CalculationHelper = styled.div`
@@ -13,7 +13,12 @@ export const CalculationHelper = styled.div`
 	justify-content: center;
 	align-items: center;
 	height: auto;
-	width: 100%;
+	width: 92%;
 	padding: 25px 23px;
 	border-right: 2px solid ${theme.colors.midGrey};
+	transition: 0.5s;
+
+	&.active {
+		width: 80%;
+	}
 `

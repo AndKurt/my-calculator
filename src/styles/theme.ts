@@ -1,4 +1,4 @@
-import { css } from 'styled-components'
+import { css } from 'styled-components/macro'
 
 // Fonts
 const font = css`
