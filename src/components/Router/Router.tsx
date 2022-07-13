@@ -1,5 +1,5 @@
 import React from 'react'
-import { HomePage } from '@screens/HomePage'
+import { HomePage, HomePageClass } from '@screens/HomePage'
 import { SettingsPage } from '@screens/SettingsPage'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import {
@@ -17,7 +17,7 @@ export const Router = () => {
 			/>
 			<Route
 				path={HOME_CLASS_PAGE_ROUTE}
-				element={<HomePage />}
+				element={<HomePageClass />}
 			/>
 			<Route
 				path={SETTINGS_PAGE_ROUTE}
