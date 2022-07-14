@@ -1,2 +1,4 @@
 export { Keypad } from './Keypad'
-export { KeypadClass } from './KeypadClass'
+import KeypadClass from './KeypadClass'
+
+export { KeypadClass }

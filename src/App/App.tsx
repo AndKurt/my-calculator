@@ -5,6 +5,10 @@ import { GlobalStyles } from '@styles/globalStyles'
 import { ThemeProvider } from 'styled-components'
 import { themeDark, themeLight } from '@styles/theme'
 import { getThemeFromLS } from '@utils/localStorageFunc'
+import { Provider } from 'react-redux'
+import { setupStore } from '../redux/'
+
+export const store = setupStore()
 
 export const App = () => {
 	const [theme, setTheme] = useState(() => getThemeFromLS())
@@ -13,7 +17,7 @@ export const App = () => {
 		setTheme(theme)
 
 	return (
-		<Fragment>
+		<Provider store={store}>
 			<ThemeProvider
 				theme={
 					theme === 'themeLight' ? themeLight : themeDark
@@ -22,6 +26,6 @@ export const App = () => {
 				<Router handleChangeTheme={handleChangeTheme} />
 				<GlobalStyles />
 			</ThemeProvider>
-		</Fragment>
+		</Provider>
 	)
 }

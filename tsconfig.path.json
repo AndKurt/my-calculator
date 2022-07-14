@@ -6,6 +6,7 @@
       "@assets/*": ["src/assets/*"],
       "@components/*": ["src/components/*"],
       "@constants/*": ["src/constants/*"],
+      "@redux/*": ["src/redux/*"],
       "@screens/*": ["src/screens/*"],
       "@styles/*": ["src/styles/*"],
       "@utils/*": ["src/utils/*"],
