@@ -17,7 +17,8 @@ import {
 	removeAllChar, 
 	swapSignValue,
 	setOperator, 
-	mathOperation
+	mathOperation,
+	setIsDot
 } from '../../redux/reducers/calculator'
 import { AppDispatch } from '../../redux/'
 import { OPERATOR } from '@constants/operators'
@@ -29,6 +30,7 @@ interface IKeyPadClassProps {
 	swapSignValue: () => void;
 	setOperator: (operator: string) => void;
 	mathOperation: () => void;
+	setIsDot: () => void;
 }
 
 class KeypadClass extends Component<IKeyPadClassProps> {
@@ -66,11 +68,14 @@ class KeypadClass extends Component<IKeyPadClassProps> {
 							this.props.setOperator(OPERATOR.MULTIPLE)
 							break
 							case OPERATOR.EQUAL:
-							this.props.mathOperation()
+								this.props.mathOperation()
+								break
+								case OPERATOR.DOT:
+									this.props.setIsDot()
+									
 							break
 							
 							default: 
-							console.log(buttonValue === OPERATOR.REMOVE_ALL);
 				}
 			}
 		}
@@ -106,6 +111,7 @@ const mapDispatchToProps  = (dispatch: AppDispatch) => {
 		swapSignValue: () => dispatch(swapSignValue()),
 		setOperator: (operator: string) => dispatch(setOperator(operator)),
 		mathOperation: () => dispatch(mathOperation()),
+		setIsDot: () => dispatch(setIsDot()),
 	}
 }
 

@@ -18,6 +18,7 @@ export interface ICalculatorStore {
 	secondValue: number;
 	operator: string;
 	expression: string;
+	isDot: boolean;
 	arrayExpressions: string[];
 }
 
@@ -27,6 +28,7 @@ const initialState: ICalculatorStore = {
 	secondValue: 0,
 	expression: '',
 	operator: '',
+	isDot: false,
 	arrayExpressions: [],
 }
 
@@ -43,17 +45,37 @@ export const calculatorSlice = createSlice({
 			const operator = state.operator
 
 			if (operator) {
-				console.log(1)
-				state.currentValue = Number(
-					secondValue + action.payload
-				)
-				state.secondValue = state.currentValue
+				if (state.isDot) {
+					if (Number.isInteger(state.currentValue)) {
+						state.currentValue = Number(
+							secondValue + '.' + action.payload
+						)
+						state.secondValue = state.currentValue
+					}
+				} else {
+					state.currentValue = Number(
+						secondValue + action.payload
+					)
+					state.secondValue = state.currentValue
+				}
 			} else {
-				console.log(2)
-				state.currentValue = Number(
-					currentValue + action.payload
-				)
+				if (state.isDot) {
+					if (Number.isInteger(state.currentValue)) {
+						state.currentValue = Number(
+							currentValue + '.' + action.payload
+						)
+					} else {
+						state.currentValue = Number(
+							currentValue + action.payload
+						)
+					}
+				} else {
+					state.currentValue = Number(
+						currentValue + action.payload
+					)
+				}
 			}
+			state.isDot = false
 		},
 
 		removeLastChar: (state) => {
@@ -71,6 +93,9 @@ export const calculatorSlice = createSlice({
 
 		removeAllChar: (state) => {
 			state.currentValue = 0
+			state.historyValue = 0
+			state.operator = ''
+			state.isDot = false
 		},
 
 		swapSignValue: (state) => {
@@ -95,6 +120,7 @@ export const calculatorSlice = createSlice({
 					)
 					state.operator = ''
 					state.secondValue = 0
+					state.isDot = false
 					break
 				case OPERATOR.SUBSTRACT:
 					state.currentValue = substractFunc(
@@ -103,7 +129,7 @@ export const calculatorSlice = createSlice({
 					)
 					state.operator = ''
 					state.secondValue = 0
-
+					state.isDot = false
 					break
 				case OPERATOR.DIVIDE:
 					state.currentValue = devideFunc(
@@ -112,6 +138,7 @@ export const calculatorSlice = createSlice({
 					)
 					state.operator = ''
 					state.secondValue = 0
+					state.isDot = false
 					break
 				case OPERATOR.MULTIPLE:
 					state.currentValue = multipleFunc(
@@ -120,6 +147,7 @@ export const calculatorSlice = createSlice({
 					)
 					state.operator = ''
 					state.secondValue = 0
+					state.isDot = false
 					break
 				case OPERATOR.PERCENTAGE:
 					state.currentValue = getRemainderOfDivision(
@@ -128,9 +156,14 @@ export const calculatorSlice = createSlice({
 					)
 					state.operator = ''
 					state.secondValue = 0
+					state.isDot = false
 					break
 				default:
 			}
+		},
+
+		setIsDot: (state) => {
+			state.isDot = true
 		},
 	},
 })
@@ -143,4 +176,5 @@ export const {
 	swapSignValue,
 	setOperator,
 	mathOperation,
+	setIsDot,
 } = calculatorSlice.actions

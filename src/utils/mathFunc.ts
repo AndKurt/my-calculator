@@ -1,5 +1,5 @@
 const roundValue = (num: number) =>
-	Math.floor(num * 1000) / 1000
+	Number((Math.floor(num * 1000) / 1000).toFixed(1))
 
 export const flipSign = (num: number) =>
 	num > 0 ? num * -1 : Math.abs(num)
