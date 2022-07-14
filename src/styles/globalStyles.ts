@@ -46,7 +46,7 @@ export const GlobalStyles =
   #root {
     display: flex;
     flex-direction: column;
-    background: ${theme.colors.white};
+    background: ${({ theme }) => theme.bodyColor};
   }
 
   ::-webkit-scrollbar {
@@ -58,7 +58,7 @@ export const GlobalStyles =
   }
   
   ::-webkit-scrollbar-thumb {
-    background: ${theme.colors.darkGrey};
+    background: ${({ theme }) => theme.borderColor};
     border: 1px solid $blue;
     border-radius: 5px;
   }

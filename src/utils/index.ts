@@ -1,1 +1,1 @@
-export * from './saveToLS'
+export * from './localStorageFunc'

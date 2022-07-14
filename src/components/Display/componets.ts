@@ -7,7 +7,8 @@ export const DisplayWrapper = styled.div`
 	height: 130px;
 	width: 100%;
 	padding: 10px 30px;
-	border-bottom: 2px solid ${theme.colors.midGrey};
+	border-bottom: 2px solid
+		${({ theme }) => theme.borderColor};
 `
 
 export const ExpressionField = styled.p`
@@ -18,6 +19,6 @@ export const ExpressionField = styled.p`
 
 export const UserValueField = styled.h2`
 	${theme.fontSizes.font64}
-	color: ${theme.colors.black};
+	color: ${({ theme }) => theme.textColor};
 	text-align: right;
 `

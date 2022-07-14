@@ -1,5 +1,5 @@
 import { CalculationClass } from '@components/Calculation'
-import { savePathToLS } from '@utils/saveToLS'
+import { savePathToLS } from '@utils/localStorageFunc'
 import React, { Component } from 'react'
 import { HomeContainer, HomeWrapper } from './components'
 

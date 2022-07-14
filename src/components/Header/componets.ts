@@ -6,10 +6,10 @@ export const HeaderWrapper = styled.header`
 	display: flex;
 	justify-content: center;
 	padding: 42px 32px;
-	background-color: ${theme.colors.darkGrey};
+	background-color: ${({ theme }) => theme.headerColor};
 	height: 120px;
 	width: 100%;
-	color: ${theme.colors.white};
+	color: ${({ theme }) => theme.textColorHeader};
 `
 
 export const HeaderContainer = styled.header`
@@ -32,7 +32,8 @@ export const NavigationBtn = styled(NavLink)`
 	}
 
 	&.active {
-		border-bottom: 2px solid ${theme.colors.white};
-		color: ${theme.colors.white};
+		border-bottom: 2px solid
+			${({ theme }) => theme.textColorHeader};
+		color: ${({ theme }) => theme.textColorHeader};
 	}
 `

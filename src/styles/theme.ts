@@ -34,7 +34,6 @@ const darkGrey = '#434343'
 
 export default {
 	font,
-	//spaces: [0, 4, 8, 16, 32, 64, 128],
 	fontSizes: {
 		font30,
 		font32,
@@ -47,4 +46,22 @@ export default {
 		midGrey,
 		darkGrey,
 	},
+}
+
+export const themeDark = {
+	headerColor: lightGrey,
+	textColorHeader: black,
+	buttonColor: midGrey,
+	bodyColor: black,
+	textColor: white,
+	borderColor: white,
+}
+
+export const themeLight = {
+	headerColor: darkGrey,
+	textColorHeader: white,
+	buttonColor: lightGrey,
+	bodyColor: white,
+	textColor: black,
+	borderColor: black,
 }

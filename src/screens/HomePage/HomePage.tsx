@@ -1,4 +1,4 @@
-import { savePathToLS } from '@utils/saveToLS'
+import { savePathToLS } from '@utils/localStorageFunc'
 import React from 'react'
 import { useEffect } from 'react'
 import { HomeContainer, HomeWrapper } from './components'

@@ -15,7 +15,8 @@ export const CalculationHelper = styled.div`
 	height: auto;
 	width: 92%;
 	padding: 25px 23px;
-	border-right: 2px solid ${theme.colors.midGrey};
+	border-right: 2px solid
+		${({ theme }) => theme.borderColor};
 	transition: 0.5s;
 
 	&.active {

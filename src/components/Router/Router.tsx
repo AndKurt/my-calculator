@@ -7,8 +7,11 @@ import {
 	HOME_CLASS_PAGE_ROUTE,
 	SETTINGS_PAGE_ROUTE,
 } from '@constants/router'
+import { ChangeTheme } from '@interfaces/props'
 
-export const Router = () => {
+export const Router = ({
+	handleChangeTheme,
+}: ChangeTheme) => {
 	return (
 		<Routes>
 			<Route
@@ -21,7 +24,11 @@ export const Router = () => {
 			/>
 			<Route
 				path={SETTINGS_PAGE_ROUTE}
-				element={<SettingsPage />}
+				element={
+					<SettingsPage
+						handleChangeTheme={handleChangeTheme}
+					/>
+				}
 			/>
 			<Route
 				path="*"

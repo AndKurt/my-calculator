@@ -16,7 +16,7 @@ export const HistoryWrapper = styled.div`
 	& h2 {
 		text-align: center;
 		${theme.fontSizes.font32}
-		color: ${theme.colors.black};
+		color: ${({ theme }) => theme.textColor};
 		margin-bottom: 10px;
 	}
 `
@@ -28,9 +28,9 @@ export const ShowHistoryBtn = styled.button`
 	align-items: center;
 	height: 30px;
 	border-radius: 25px;
-	border: 2px solid ${theme.colors.darkGrey};
-	background: ${theme.colors.lightGrey};
-	color: ${theme.colors.black};
+	border: 2px solid ${({ theme }) => theme.borderColor};
+	background: ${({ theme }) => theme.buttonColor};
+	color: ${({ theme }) => theme.textColor};
 	cursor: pointer;
 `
 export const HistoryList = styled.ul`
@@ -52,6 +52,7 @@ export const ListItem = styled.li`
 	transition: 0.5s;
 	opacity: 1;
 	margin-top: 20px;
+	color: ${({ theme }) => theme.textColor};
 	${theme.fontSizes.font30}
 
 	&.active {

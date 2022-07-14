@@ -15,9 +15,9 @@ const btnTemplate = css`
 	height: 110px;
 	width: 110px;
 	border-radius: 32px;
-	border: 2px solid ${theme.colors.darkGrey};
-	background: ${theme.colors.lightGrey};
-	color: ${theme.colors.black};
+	border: 2px solid ${({ theme }) => theme.borderColor};
+	background: ${({ theme }) => theme.buttonColor};
+	color: ${({ theme }) => theme.textColor};
 	cursor: pointer;
 `
 
