@@ -1,7 +1,15 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { HomePage, HomePageClass } from '@screens/HomePage'
-import { SettingsPage } from '@screens/SettingsPage'
-import { Navigate, Route, Routes } from 'react-router-dom'
+import {
+	SettingsPage,
+	SettingsPageClass,
+} from '@screens/SettingsPage'
+import {
+	Navigate,
+	Route,
+	Routes,
+	useLocation,
+} from 'react-router-dom'
 import {
 	HOME_PAGE_ROUTE,
 	HOME_CLASS_PAGE_ROUTE,
@@ -12,6 +20,19 @@ import { ChangeTheme } from '@interfaces/props'
 export const Router = ({
 	handleChangeTheme,
 }: ChangeTheme) => {
+	const [isClassComponent, setIsClassComponent] =
+		useState(false)
+	const { pathname } = useLocation()
+
+	useEffect(() => {
+		if (pathname === HOME_CLASS_PAGE_ROUTE) {
+			setIsClassComponent(true)
+		}
+		if (pathname === HOME_PAGE_ROUTE) {
+			setIsClassComponent(false)
+		}
+	})
+
 	return (
 		<Routes>
 			<Route
@@ -25,9 +46,15 @@ export const Router = ({
 			<Route
 				path={SETTINGS_PAGE_ROUTE}
 				element={
-					<SettingsPage
-						handleChangeTheme={handleChangeTheme}
-					/>
+					!isClassComponent ? (
+						<SettingsPage
+							handleChangeTheme={handleChangeTheme}
+						/>
+					) : (
+						<SettingsPageClass
+							handleChangeTheme={handleChangeTheme}
+						/>
+					)
 				}
 			/>
 			<Route

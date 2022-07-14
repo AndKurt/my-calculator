@@ -1,3 +1,4 @@
+import { ControlPanelClass } from '@components/ControlPanel'
 import { DisplayClass } from '@components/Display'
 import { HistoryClass } from '@components/History'
 import { KeypadClass } from '@components/Keypad'
@@ -5,6 +6,7 @@ import React, { Component } from 'react'
 import {
 	CalculationHelper,
 	CalculationWrapper,
+	HistoryHelper,
 } from './componets'
 
 interface IHistoryState {
@@ -17,7 +19,6 @@ export class CalculationClass extends Component<
 > {
 	constructor(props: IHistoryState) {
 		super(props)
-
 		this.state = {
 			isShow: false,
 		}
@@ -38,10 +39,14 @@ export class CalculationClass extends Component<
 					<DisplayClass />
 					<KeypadClass />
 				</CalculationHelper>
-				<HistoryClass
-					isShowHistory={isShowHistory}
-					HandleShowHistory={this.HandleShowHistory}
-				/>
+				<HistoryHelper
+					className={isShowHistory ? 'active' : ''}>
+					<ControlPanelClass
+						isShowHistory={isShowHistory}
+						handleShowHistory={this.HandleShowHistory}
+					/>
+					<HistoryClass isShowHistory={isShowHistory} />
+				</HistoryHelper>
 			</CalculationWrapper>
 		)
 	}

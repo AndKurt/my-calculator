@@ -4,7 +4,6 @@ import {
 	HistoryList,
 	HistoryWrapper,
 	ListItem,
-	ShowHistoryBtn,
 } from './componets'
 
 const historyListData = [
@@ -35,7 +34,6 @@ const historyListData = [
 
 export interface IHistoryProps {
 	isShowHistory: boolean;
-	HandleShowHistory: () => void;
 }
 
 export class HistoryClass extends Component<IHistoryProps> {
@@ -46,10 +44,6 @@ export class HistoryClass extends Component<IHistoryProps> {
 					this.props.isShowHistory ? 'active' : ''
 				}>
 				<h2>History</h2>
-				<ShowHistoryBtn
-					onClick={this.props.HandleShowHistory}>
-					{this.props.isShowHistory ? 'Hide' : 'Show'}
-				</ShowHistoryBtn>
 				<HistoryList
 					className={
 						!this.props.isShowHistory ? 'active' : ''

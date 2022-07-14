@@ -5,12 +5,12 @@ export const HistoryWrapper = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	width: 8%;
+	/*width: 8%;*/
 	padding: 0 15px;
-	transition: 0.5s;
+	/*transition: 0.5s;*/
 
 	&.active {
-		width: 20%;
+		/*width: 20%;*/
 	}
 
 	& h2 {
@@ -21,18 +21,6 @@ export const HistoryWrapper = styled.div`
 	}
 `
 
-export const ShowHistoryBtn = styled.button`
-	width: 100px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 30px;
-	border-radius: 25px;
-	border: 2px solid ${({ theme }) => theme.borderColor};
-	background: ${({ theme }) => theme.buttonColor};
-	color: ${({ theme }) => theme.textColor};
-	cursor: pointer;
-`
 export const HistoryList = styled.ul`
 	width: 100%;
 	transition: 0.5s;

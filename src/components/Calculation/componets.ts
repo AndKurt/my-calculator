@@ -23,3 +23,15 @@ export const CalculationHelper = styled.div`
 		width: 80%;
 	}
 `
+
+export const HistoryHelper = styled.div`
+	display: flex;
+	flex-direction: column;
+	height: auto;
+	width: 8%;
+	transition: 0.5s;
+
+	&.active {
+		width: 20%;
+	}
+`
