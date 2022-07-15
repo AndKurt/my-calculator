@@ -7,6 +7,7 @@ import { themeDark, themeLight } from '@styles/theme'
 import { getThemeFromLS } from '@utils/localStorageFunc'
 import { Provider } from 'react-redux'
 import { setupStore } from '@redux/store'
+import { THEME } from '@constants/operators'
 
 export const store = setupStore()
 
@@ -20,7 +21,7 @@ export const App = () => {
 		<Provider store={store}>
 			<ThemeProvider
 				theme={
-					theme === 'themeLight' ? themeLight : themeDark
+					theme === THEME.LIGHT ? themeLight : themeDark
 				}>
 				<Header />
 				<Router handleChangeTheme={handleChangeTheme} />

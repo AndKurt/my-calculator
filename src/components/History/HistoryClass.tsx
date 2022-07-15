@@ -1,15 +1,11 @@
 import { store } from '@App/App'
+import { IHistoryProps } from '@interfaces/props'
 import React, { Component } from 'react'
 import {
 	HistoryList,
 	HistoryWrapper,
 	ListItem,
 } from './componets'
-
-export interface IHistoryProps {
-	isShowHistory: boolean;
-	arrayExpressions: string[];
-}
 
 export class HistoryClass extends Component<IHistoryProps> {
 	constructor(props: IHistoryProps) {
@@ -36,7 +32,7 @@ export class HistoryClass extends Component<IHistoryProps> {
 				<h2>History</h2>
 				<HistoryList
 					className={!isShowHistory ? 'active' : ''}>
-					{arrayExpressions.length > 0 &&
+					{arrayExpressions &&
 						arrayExpressions.map((item: string) => (
 							<ListItem
 								key={item}

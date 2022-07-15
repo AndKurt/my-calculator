@@ -14,3 +14,8 @@ export const OPERATOR = {
 }
 
 export const MAX_INPUT = 9
+
+export const THEME = {
+	LIGHT: 'lightTheme',
+	DARK: 'darkTheme',
+}

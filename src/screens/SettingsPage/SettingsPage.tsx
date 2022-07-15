@@ -1,3 +1,4 @@
+import { THEME } from '@constants/operators'
 import { ChangeTheme } from '@interfaces/props'
 import { getThemeFromLS } from '@utils/localStorageFunc'
 import React, { ChangeEvent, useState } from 'react'
@@ -24,6 +25,15 @@ export const SettingsPage = ({
 		)
 	}
 
+	const handleClearAll = () => {
+		const currentTheme = THEME.LIGHT
+		handleChangeTheme(currentTheme)
+		localStorage.setItem(
+			'theme',
+			JSON.stringify(currentTheme)
+		)
+	}
+
 	return (
 		<SettingsWrapper>
 			<SettingsContainer>
@@ -32,10 +42,12 @@ export const SettingsPage = ({
 				<Select
 					defaultValue={theme}
 					onChange={handleChange}>
-					<option value="themeLight">Light Theme</option>
-					<option value="themeDark">Dark Theme</option>
+					<option value={THEME.LIGHT}>Light Theme</option>
+					<option value={THEME.DARK}>Dark Theme</option>
 				</Select>
-				<ClearBtn>Clear All History</ClearBtn>
+				<ClearBtn onClick={handleClearAll}>
+					Clear All History
+				</ClearBtn>
 			</SettingsContainer>
 		</SettingsWrapper>
 	)

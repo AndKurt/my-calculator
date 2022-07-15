@@ -1,3 +1,4 @@
+import { Calculation } from '@components/Calculation'
 import { savePathToLS } from '@utils/localStorageFunc'
 import React from 'react'
 import { useEffect } from 'react'
@@ -11,7 +12,7 @@ export const HomePage = () => {
 	return (
 		<HomeWrapper>
 			<HomeContainer>
-				<h1>HomePage</h1>
+				<Calculation />
 			</HomeContainer>
 		</HomeWrapper>
 	)

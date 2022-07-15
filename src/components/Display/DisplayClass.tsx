@@ -1,4 +1,6 @@
 import { store } from '@App/App'
+import { IDisplayProps } from '@interfaces/props'
+import { IDisplayState } from '@interfaces/state'
 import React, { Component } from 'react'
 import {
 	DisplayWrapper,
@@ -6,16 +8,11 @@ import {
 	UserValueField,
 } from './componets'
 
-interface IDisplay {
-	currentValue: string;
-	expression: string;
-}
-
 export class DisplayClass extends Component<
-	IDisplay,
-	IDisplay
+	IDisplayProps,
+	IDisplayState
 > {
-	constructor(props: IDisplay) {
+	constructor(props: IDisplayProps) {
 		super(props)
 
 		this.state = {

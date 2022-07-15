@@ -17,14 +17,14 @@ export class CalculationClass extends Component<
 	{},
 	IHistoryState
 > {
-	constructor(props: IHistoryState) {
+	constructor(props) {
 		super(props)
 		this.state = {
 			isShow: true,
 		}
 	}
 
-	HandleShowHistory = () =>
+	handleShowHistory = () =>
 		this.setState((prevState) => ({
 			isShow: !prevState.isShow,
 		}))
@@ -43,7 +43,7 @@ export class CalculationClass extends Component<
 					className={isShowHistory ? 'active' : ''}>
 					<ControlPanelClass
 						isShowHistory={isShowHistory}
-						handleShowHistory={this.HandleShowHistory}
+						handleShowHistory={this.handleShowHistory}
 					/>
 					<VisibleHistoryClass
 						isShowHistory={isShowHistory}

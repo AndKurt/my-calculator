@@ -1,3 +1,4 @@
+import { THEME } from '@constants/operators'
 import { ChangeTheme } from '@interfaces/props'
 import { getThemeFromLS } from '@utils/localStorageFunc'
 import React, { ChangeEvent, Component } from 'react'
@@ -20,29 +21,26 @@ export class SettingsPageClass extends Component<
 		}
 	}
 
+	handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
+		const currentTheme = e.target.value
+		this.props.handleChangeTheme(currentTheme)
+		localStorage.setItem(
+			'theme',
+			JSON.stringify(currentTheme)
+		)
+	}
+
+	handleClearAll = () => {
+		const currentTheme = THEME.LIGHT
+		this.props.handleChangeTheme(currentTheme)
+		localStorage.setItem(
+			'theme',
+			JSON.stringify(currentTheme)
+		)
+	}
+
 	render() {
-		const { handleChangeTheme } = this.props
 		const { theme } = this.state
-
-		const handleChange = (
-			e: ChangeEvent<HTMLSelectElement>
-		) => {
-			const currentTheme = e.target.value
-			handleChangeTheme(currentTheme)
-			localStorage.setItem(
-				'theme',
-				JSON.stringify(currentTheme)
-			)
-		}
-
-		const handleClear = () => {
-			const currentTheme = 'themeLight'
-			handleChangeTheme(currentTheme)
-			localStorage.setItem(
-				'theme',
-				JSON.stringify(currentTheme)
-			)
-		}
 
 		return (
 			<SettingsWrapper>
@@ -51,11 +49,11 @@ export class SettingsPageClass extends Component<
 					<h3>Switch Theme</h3>
 					<Select
 						defaultValue={theme}
-						onChange={handleChange}>
-						<option value="themeLight">Light Theme</option>
-						<option value="themeDark">Dark Theme</option>
+						onChange={this.handleChange}>
+						<option value={THEME.LIGHT}>Light Theme</option>
+						<option value={THEME.DARK}>Dark Theme</option>
 					</Select>
-					<ClearBtn onClick={handleClear}>
+					<ClearBtn onClick={this.handleClearAll}>
 						Clear All History
 					</ClearBtn>
 				</SettingsContainer>

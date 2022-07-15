@@ -1,3 +1,4 @@
+import { useAppSelector } from '@redux/hooks/hooks'
 import React from 'react'
 import {
 	DisplayWrapper,
@@ -6,10 +7,14 @@ import {
 } from './componets'
 
 export const Display = () => {
+	const { currentValue, expression } = useAppSelector(
+		(state) => state.calculatorReducer
+	)
+
 	return (
 		<DisplayWrapper>
-			<ExpressionField>(55 + 1) + 7</ExpressionField>
-			<UserValueField>55</UserValueField>
+			<UserValueField>{currentValue}</UserValueField>
+			<ExpressionField>{expression}</ExpressionField>
 		</DisplayWrapper>
 	)
 }

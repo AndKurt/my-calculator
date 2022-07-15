@@ -5,13 +5,7 @@ export const HistoryWrapper = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	/*width: 8%;*/
 	padding: 0 15px;
-	/*transition: 0.5s;*/
-
-	&.active {
-		/*width: 20%;*/
-	}
 
 	& h2 {
 		text-align: center;
