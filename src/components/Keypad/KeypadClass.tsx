@@ -36,7 +36,7 @@ class KeypadClass extends Component<IKeyPadClassProps> {
 	handelClick = (e: MouseEvent<HTMLElement>) => {
 		const buttonValue = (e.target as HTMLButtonElement).value
 		if (buttonValue) {
-			if (!isNaN(Number(buttonValue)) || buttonValue === OPERATOR.DOT) {
+			if (!isNaN(Number(buttonValue))) {
 				this.props.setCurrentValue(buttonValue)
 			}
 			else {
@@ -44,15 +44,18 @@ class KeypadClass extends Component<IKeyPadClassProps> {
 					case OPERATOR.REMOVE_LAST:
 						this.props.removeLastChar()
 						break
+						case OPERATOR.DOT:
+							this.props.setCurrentValue(OPERATOR.DOT)
+							break
 						case OPERATOR.PERCENTAGE:
 							this.props.setOperator(OPERATOR.PERCENTAGE)
 							break
-							case OPERATOR.REMOVE_ALL:					
+						case OPERATOR.REMOVE_ALL:					
 							this.props.removeAllChar()
 							break
-							case OPERATOR.SWAP_SIGN:
-						this.props.swapSignValue()
-						break
+						case OPERATOR.SWAP_SIGN:
+							this.props.swapSignValue()
+							break
 						case OPERATOR.ADD:
 							this.props.setOperator(OPERATOR.ADD)
 							break
@@ -65,9 +68,15 @@ class KeypadClass extends Component<IKeyPadClassProps> {
 						case OPERATOR.MULTIPLE:
 							this.props.setOperator(OPERATOR.MULTIPLE)
 							break
-							case OPERATOR.EQUAL:
-								this.props.mathOperation()
-								break
+						case OPERATOR.EQUAL:
+							this.props.mathOperation()
+							break
+						case OPERATOR.BRACKET_LEFT:
+							this.props.setCurrentValue(OPERATOR.BRACKET_LEFT)
+							break
+						case OPERATOR.BRACKET_RIGHT:
+							this.props.setCurrentValue(OPERATOR.BRACKET_RIGHT)
+							break
 
 							
 							default: 
