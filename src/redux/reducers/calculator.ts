@@ -135,9 +135,16 @@ export const calculatorSlice = createSlice({
 		},
 
 		swapSignValue: (state) => {
-			state.currentValue = flipSign(
-				Number(state.currentValue)
+			const flippedvalue = flipSign(state.currentValue)
+			state.expression = state.expression.map(
+				(value, index) => {
+					if (value === state.currentValue) {
+						return (state.expression[index] = flippedvalue)
+					}
+					return state.expression[index]
+				}
 			)
+			state.currentValue = flippedvalue
 		},
 
 		setOperator: (state, action: PayloadAction<string>) => {

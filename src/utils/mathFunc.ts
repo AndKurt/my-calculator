@@ -1,8 +1,10 @@
 const roundValue = (num: number) =>
 	Number(Math.ceil(num * 1000) / 1000)
 
-export const flipSign = (num: number) =>
-	num > 0 ? (num * -1).toString() : Math.abs(num).toString()
+export const flipSign = (num: string) =>
+	Number(num) > 0
+		? (Number(num) * -1).toString()
+		: Math.abs(Number(num)).toString()
 
 export const getRemainderOfDivision = (
 	historyValue: string,
