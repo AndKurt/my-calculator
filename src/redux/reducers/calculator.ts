@@ -1,4 +1,4 @@
-import { OPERATOR } from '@constants/operators'
+import { MAX_INPUT, OPERATOR } from '@constants/operators'
 import {
 	createSlice,
 	PayloadAction,
@@ -8,27 +8,26 @@ import {
 	devideFunc,
 	flipSign,
 	getRemainderOfDivision,
+	limitInput,
 	multipleFunc,
 	substractFunc,
 } from '@utils/mathFunc'
 
 export interface ICalculatorStore {
-	currentValue: number;
-	historyValue: number;
-	secondValue: number;
+	currentValue: string;
+	historyValue: string;
+	secondValue: string;
 	operator: string;
 	expression: string;
-	isDot: boolean;
 	arrayExpressions: string[];
 }
 
 const initialState: ICalculatorStore = {
-	currentValue: 0,
-	historyValue: 0,
-	secondValue: 0,
+	currentValue: '0',
+	historyValue: '0',
+	secondValue: '0',
 	expression: '',
 	operator: '',
-	isDot: false,
 	arrayExpressions: [],
 }
 
@@ -38,73 +37,93 @@ export const calculatorSlice = createSlice({
 	reducers: {
 		setCurrentValue: (
 			state,
-			action: PayloadAction<number>
+			action: PayloadAction<string>
 		) => {
 			const currentValue = state.currentValue
+			const operand = action.payload
 			const secondValue = state.secondValue
 			const operator = state.operator
 
 			if (operator) {
-				if (state.isDot) {
-					if (Number.isInteger(state.currentValue)) {
-						state.currentValue = Number(
-							secondValue + '.' + action.payload
-						)
-						state.secondValue = state.currentValue
+				switch (operand) {
+					case OPERATOR.DOT: {
+						if (secondValue.includes('.')) {
+							state.currentValue = secondValue
+						} else {
+							state.currentValue = limitInput(
+								`${secondValue}${action.payload}`,
+								MAX_INPUT
+							)
+							state.secondValue = state.currentValue
+						}
+						break
 					}
-				} else {
-					state.currentValue = Number(
-						secondValue + action.payload
-					)
-					state.secondValue = state.currentValue
+					default:
+						if (secondValue === '0') {
+							state.currentValue = action.payload
+							state.secondValue = state.currentValue
+						} else {
+							state.currentValue = limitInput(
+								`${secondValue}${action.payload}`,
+								MAX_INPUT
+							)
+							state.secondValue = state.currentValue
+						}
 				}
 			} else {
-				if (state.isDot) {
-					if (Number.isInteger(state.currentValue)) {
-						state.currentValue = Number(
-							currentValue + '.' + action.payload
-						)
-					} else {
-						state.currentValue = Number(
-							currentValue + action.payload
-						)
+				switch (operand) {
+					case OPERATOR.DOT: {
+						if (currentValue.includes('.')) {
+							state.currentValue = currentValue
+						} else {
+							state.currentValue = limitInput(
+								`${currentValue}${action.payload}`,
+								MAX_INPUT
+							)
+						}
+						break
 					}
-				} else {
-					state.currentValue = Number(
-						currentValue + action.payload
-					)
+					default:
+						if (currentValue === '0') {
+							state.currentValue = action.payload
+						} else {
+							state.currentValue = limitInput(
+								`${currentValue}${action.payload}`,
+								MAX_INPUT
+							)
+						}
 				}
 			}
-			state.isDot = false
 		},
 
 		removeLastChar: (state) => {
-			if (
-				state.currentValue > -10 &&
-				state.currentValue < 0
-			) {
-				state.currentValue = 0
+			if (state.currentValue.length < 2) {
+				state.currentValue = '0'
 			} else {
-				state.currentValue = Number(
-					state.currentValue.toString().slice(0, -1)
-				)
+				state.currentValue = state.currentValue
+					.toString()
+					.slice(0, -1)
 			}
 		},
 
 		removeAllChar: (state) => {
-			state.currentValue = 0
-			state.historyValue = 0
+			state.currentValue = '0'
+			state.historyValue = '0'
+			state.secondValue = '0'
 			state.operator = ''
-			state.isDot = false
 		},
 
 		swapSignValue: (state) => {
-			state.currentValue = flipSign(state.currentValue)
+			state.currentValue = flipSign(
+				Number(state.currentValue)
+			)
 		},
 
 		setOperator: (state, action: PayloadAction<string>) => {
-			state.historyValue = state.currentValue
-			state.operator = action.payload
+			if (!state.operator) {
+				state.historyValue = state.currentValue
+				state.operator = action.payload
+			}
 		},
 
 		mathOperation: (state) => {
@@ -116,54 +135,46 @@ export const calculatorSlice = createSlice({
 				case OPERATOR.ADD:
 					state.currentValue = addFunc(
 						historyValue,
-						Number(currentValue)
+						currentValue
 					)
 					state.operator = ''
-					state.secondValue = 0
-					state.isDot = false
+					state.secondValue = '0'
 					break
 				case OPERATOR.SUBSTRACT:
 					state.currentValue = substractFunc(
 						historyValue,
-						Number(currentValue)
+						currentValue
 					)
 					state.operator = ''
-					state.secondValue = 0
-					state.isDot = false
+					state.secondValue = '0'
 					break
 				case OPERATOR.DIVIDE:
 					state.currentValue = devideFunc(
 						historyValue,
-						Number(currentValue)
+						currentValue
 					)
 					state.operator = ''
-					state.secondValue = 0
-					state.isDot = false
+					state.secondValue = '0'
 					break
 				case OPERATOR.MULTIPLE:
 					state.currentValue = multipleFunc(
 						historyValue,
-						Number(currentValue)
+						currentValue
 					)
 					state.operator = ''
-					state.secondValue = 0
-					state.isDot = false
+					state.secondValue = '0'
 					break
 				case OPERATOR.PERCENTAGE:
 					state.currentValue = getRemainderOfDivision(
 						historyValue,
-						Number(currentValue)
+						currentValue
 					)
 					state.operator = ''
-					state.secondValue = 0
-					state.isDot = false
+					state.secondValue = '0'
 					break
 				default:
+					state
 			}
-		},
-
-		setIsDot: (state) => {
-			state.isDot = true
 		},
 	},
 })
@@ -176,5 +187,4 @@ export const {
 	swapSignValue,
 	setOperator,
 	mathOperation,
-	setIsDot,
 } = calculatorSlice.actions

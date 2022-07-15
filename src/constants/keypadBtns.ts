@@ -17,7 +17,7 @@ export const keypadBtns = [
 	{ view: '(' },
 	{ view: ')' },
 	{ view: '0' },
-	{ view: ',' },
+	{ view: '.' },
 	{ view: '-' },
 ]
 

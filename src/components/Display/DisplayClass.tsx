@@ -1,7 +1,6 @@
 import { store } from '@App/App'
 import { connect } from 'react-redux'
 import React, { Component } from 'react'
-import { ICalculatorStore } from '../../redux/reducers/calculator'
 import {
 	DisplayWrapper,
 	ExpressionField,
@@ -10,7 +9,7 @@ import {
 import { RootState } from '../../redux/store'
 
 interface IDisplay {
-	currentValue: number;
+	currentValue: string;
 	expression: string;
 }
 
@@ -19,7 +18,7 @@ class DisplayClass extends Component<IDisplay, IDisplay> {
 		super(props)
 
 		this.state = {
-			currentValue: 0,
+			currentValue: '0',
 			expression: '',
 		}
 	}

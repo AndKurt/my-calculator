@@ -18,7 +18,6 @@ import {
 	swapSignValue,
 	setOperator, 
 	mathOperation,
-	setIsDot
 } from '../../redux/reducers/calculator'
 import { AppDispatch } from '../../redux/'
 import { OPERATOR } from '@constants/operators'
@@ -30,7 +29,6 @@ interface IKeyPadClassProps {
 	swapSignValue: () => void;
 	setOperator: (operator: string) => void;
 	mathOperation: () => void;
-	setIsDot: () => void;
 }
 
 class KeypadClass extends Component<IKeyPadClassProps> {
@@ -38,7 +36,7 @@ class KeypadClass extends Component<IKeyPadClassProps> {
 	handelClick = (e: MouseEvent<HTMLElement>) => {
 		const buttonValue = (e.target as HTMLButtonElement).value
 		if (buttonValue) {
-			if (!isNaN(Number(buttonValue))) {
+			if (!isNaN(Number(buttonValue)) || buttonValue === OPERATOR.DOT) {
 				this.props.setCurrentValue(buttonValue)
 			}
 			else {
@@ -70,10 +68,7 @@ class KeypadClass extends Component<IKeyPadClassProps> {
 							case OPERATOR.EQUAL:
 								this.props.mathOperation()
 								break
-								case OPERATOR.DOT:
-									this.props.setIsDot()
-									
-							break
+
 							
 							default: 
 				}
@@ -111,7 +106,6 @@ const mapDispatchToProps  = (dispatch: AppDispatch) => {
 		swapSignValue: () => dispatch(swapSignValue()),
 		setOperator: (operator: string) => dispatch(setOperator(operator)),
 		mathOperation: () => dispatch(mathOperation()),
-		setIsDot: () => dispatch(setIsDot()),
 	}
 }
 

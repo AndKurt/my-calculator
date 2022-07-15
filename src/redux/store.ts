@@ -12,7 +12,7 @@ export const setupStore = () => {
 		reducer: rootReducer,
 		middleware: (getDefaultMiddleware) => [
 			...getDefaultMiddleware(),
-			//logger,
+			logger,
 		],
 	})
 }

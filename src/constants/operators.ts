@@ -5,10 +5,12 @@ export const OPERATOR = {
 	SWAP_SIGN: '±',
 	BRACKET_LEFT: '(',
 	BRACKET_RIGHT: ')',
-	DOT: ',',
+	DOT: '.',
 	MULTIPLE: '*',
 	DIVIDE: '/',
 	ADD: '+',
 	SUBSTRACT: '-',
 	EQUAL: '=',
 }
+
+export const MAX_INPUT = 9
