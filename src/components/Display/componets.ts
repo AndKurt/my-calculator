@@ -4,7 +4,7 @@ import theme from '@styles/theme'
 export const DisplayWrapper = styled.div`
 	display: flex;
 	flex-direction: column;
-	height: 130px;
+	height: 160px;
 	width: 100%;
 	padding: 10px 30px;
 	border-bottom: 2px solid

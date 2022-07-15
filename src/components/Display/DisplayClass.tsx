@@ -37,8 +37,8 @@ class DisplayClass extends Component<IDisplay, IDisplay> {
 
 		return (
 			<DisplayWrapper>
-				<ExpressionField>{expression}</ExpressionField>
 				<UserValueField>{currentValue}</UserValueField>
+				<ExpressionField>{expression}</ExpressionField>
 			</DisplayWrapper>
 		)
 	}
@@ -47,7 +47,8 @@ class DisplayClass extends Component<IDisplay, IDisplay> {
 const mapStateToProps = (state: RootState) => {
 	return {
 		currentValue: state.calculatorReducer.currentValue,
-		expression: state.calculatorReducer.expression,
+		expression:
+			state.calculatorReducer.expression.join(' '),
 	}
 }
 

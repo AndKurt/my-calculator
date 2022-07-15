@@ -1,2 +1,4 @@
 export { History } from './History'
-export { HistoryClass } from './HistoryClass'
+import HistoryClass from './HistoryClass'
+
+export { HistoryClass }

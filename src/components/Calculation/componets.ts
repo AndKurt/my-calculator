@@ -14,7 +14,7 @@ export const CalculationHelper = styled.div`
 	align-items: center;
 	height: auto;
 	width: 92%;
-	padding: 25px 23px;
+	padding: 0 23px;
 	border-right: 2px solid
 		${({ theme }) => theme.borderColor};
 	transition: 0.5s;

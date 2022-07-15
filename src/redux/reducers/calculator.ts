@@ -18,7 +18,7 @@ export interface ICalculatorStore {
 	historyValue: string;
 	secondValue: string;
 	operator: string;
-	expression: string;
+	expression: string[];
 	arrayExpressions: string[];
 }
 
@@ -26,7 +26,7 @@ const initialState: ICalculatorStore = {
 	currentValue: '0',
 	historyValue: '0',
 	secondValue: '0',
-	expression: '',
+	expression: [],
 	operator: '',
 	arrayExpressions: [],
 }
@@ -70,6 +70,18 @@ export const calculatorSlice = createSlice({
 							state.secondValue = state.currentValue
 						}
 				}
+
+				if (state.expression.length > 2) {
+					state.expression = [
+						...state.expression.slice(0, -1),
+						state.currentValue,
+					]
+				} else {
+					state.expression = [
+						...state.expression,
+						state.currentValue,
+					]
+				}
 			} else {
 				switch (operand) {
 					case OPERATOR.DOT: {
@@ -93,6 +105,8 @@ export const calculatorSlice = createSlice({
 							)
 						}
 				}
+				console.log(2)
+				state.expression = [state.currentValue]
 			}
 		},
 
@@ -103,6 +117,11 @@ export const calculatorSlice = createSlice({
 				state.currentValue = state.currentValue
 					.toString()
 					.slice(0, -1)
+
+				state.expression = [
+					...state.expression.slice(0, -1),
+					state.currentValue,
+				]
 			}
 		},
 
@@ -111,6 +130,8 @@ export const calculatorSlice = createSlice({
 			state.historyValue = '0'
 			state.secondValue = '0'
 			state.operator = ''
+			state.expression = []
+			state.arrayExpressions = []
 		},
 
 		swapSignValue: (state) => {
@@ -123,6 +144,10 @@ export const calculatorSlice = createSlice({
 			if (!state.operator) {
 				state.historyValue = state.currentValue
 				state.operator = action.payload
+				state.expression = [
+					...state.expression,
+					action.payload,
+				]
 			}
 		},
 
@@ -175,6 +200,11 @@ export const calculatorSlice = createSlice({
 				default:
 					state
 			}
+			state.arrayExpressions = [
+				...state.arrayExpressions,
+				state.expression.join(' '),
+			]
+			state.expression = [state.currentValue]
 		},
 	},
 })

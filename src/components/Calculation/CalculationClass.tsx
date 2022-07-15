@@ -20,7 +20,7 @@ export class CalculationClass extends Component<
 	constructor(props: IHistoryState) {
 		super(props)
 		this.state = {
-			isShow: false,
+			isShow: true,
 		}
 	}
 

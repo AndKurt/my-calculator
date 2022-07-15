@@ -1,10 +1,12 @@
-//import { historyListData } from '@mock/historyList'
+import { RootState } from '../../redux/store'
+import { store } from '@App/App'
 import React, { Component } from 'react'
 import {
 	HistoryList,
 	HistoryWrapper,
 	ListItem,
 } from './componets'
+import { connect } from 'react-redux'
 
 const historyListData = [
 	'55 + 7',
@@ -34,33 +36,53 @@ const historyListData = [
 
 export interface IHistoryProps {
 	isShowHistory: boolean;
+	arrayExpressions: string[];
 }
 
 export class HistoryClass extends Component<IHistoryProps> {
+	constructor(props: IHistoryProps) {
+		super(props)
+
+		this.state = {
+			arrayExpressions: [],
+		}
+	}
+
+	componentDidMount() {
+		store.subscribe(() => {
+			this.setState({
+				arrayExpressions: this.props.arrayExpressions,
+			})
+		})
+	}
+
 	render() {
+		const { isShowHistory, arrayExpressions } = this.props
 		return (
 			<HistoryWrapper
-				className={
-					this.props.isShowHistory ? 'active' : ''
-				}>
+				className={isShowHistory ? 'active' : ''}>
 				<h2>History</h2>
 				<HistoryList
-					className={
-						!this.props.isShowHistory ? 'active' : ''
-					}>
-					{historyListData.map((item: string) => (
-						<ListItem
-							key={item}
-							className={
-								!this.props.isShowHistory ? 'active' : ''
-							}>
-							{item}
-						</ListItem>
-					))}
+					className={!isShowHistory ? 'active' : ''}>
+					{arrayExpressions.length > 0 &&
+						arrayExpressions.map((item: string) => (
+							<ListItem
+								key={item}
+								className={!isShowHistory ? 'active' : ''}>
+								{item}
+							</ListItem>
+						))}
 				</HistoryList>
 			</HistoryWrapper>
 		)
 	}
 }
 
-export default HistoryClass
+const mapStateToProps = (state: RootState) => {
+	return {
+		arrayExpressions:
+			state.calculatorReducer.arrayExpressions,
+	}
+}
+
+export default connect(mapStateToProps)(HistoryClass)
