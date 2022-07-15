@@ -105,63 +105,78 @@ export const calculatorSlice = createSlice({
 							)
 						}
 				}
-				console.log(2)
 				state.expression = [state.currentValue]
 			}
 		},
 
 		removeLastChar: (state) => {
-			if (state.currentValue.length < 2) {
-				state.currentValue = '0'
-			} else {
-				state.currentValue = state.currentValue
-					.toString()
-					.slice(0, -1)
+			let passValue: string | null = null
 
-				state.expression = [
-					...state.expression.slice(0, -1),
-					state.currentValue,
-				]
+			if (state.expression.length === 1) {
+				if (state.expression[0].length === 1) {
+					passValue = '0'
+					state.currentValue = passValue
+					state.historyValue = passValue
+					state.expression = []
+				} else {
+					passValue = state.expression[0].slice(0, -1)
+					state.historyValue = passValue
+					state.expression = [passValue]
+					state.currentValue = passValue
+				}
+				state.operator = ''
+			} else {
+				if (state.expression.length > 1) {
+					if (state.secondValue.length === 1) {
+						state.expression.pop()
+						passValue = '0'
+						state.secondValue = passValue
+						state.currentValue = passValue
+					} else {
+						state.expression.pop()
+						passValue = state.secondValue.slice(0, -1)
+						state.secondValue = passValue
+						state.currentValue = passValue
+						state.expression = [
+							...state.expression,
+							passValue,
+						]
+					}
+				}
 			}
 		},
 
-		removeAllChar: (state) => {
-			state.currentValue = '0'
-			state.historyValue = '0'
-			state.secondValue = '0'
-			state.operator = ''
-			state.expression = []
-			state.arrayExpressions = []
-		},
+		resetAll: () => initialState,
 
 		swapSignValue: (state) => {
 			const flippedvalue = flipSign(state.currentValue)
-			state.expression = state.expression.map(
-				(value, index) => {
-					if (value === state.currentValue) {
-						return (state.expression[index] = flippedvalue)
-					}
-					return state.expression[index]
-				}
+			const index = state.expression.lastIndexOf(
+				state.currentValue
 			)
+			state.expression[index] = flippedvalue
 			state.currentValue = flippedvalue
-		},
-
-		setOperator: (state, action: PayloadAction<string>) => {
-			if (!state.operator) {
-				state.historyValue = state.currentValue
-				state.operator = action.payload
-				state.expression = [
-					...state.expression,
-					action.payload,
-				]
+			if (state.secondValue !== '0') {
+				state.secondValue = flippedvalue
 			}
 		},
 
-		mathOperation: (state) => {
+		setOperator: (state, action: PayloadAction<string>) => {
+			const currentOperator = action.payload
 			const currentValue = state.currentValue
+
+			state.operator = currentOperator
+			state.historyValue = currentValue
+			state.expression = [currentValue, currentOperator]
+		},
+
+		mathOperation: (state) => {
 			const historyValue = state.historyValue
+			const secondValue = state.secondValue
 			const operator = state.operator
+			const currentValue =
+				secondValue === '0'
+					? secondValue
+					: state.currentValue
 
 			switch (operator) {
 				case OPERATOR.ADD:
@@ -213,6 +228,28 @@ export const calculatorSlice = createSlice({
 			]
 			state.expression = [state.currentValue]
 		},
+
+		setBracket: (state, action: PayloadAction<string>) => {
+			const currentValue = state.currentValue
+			const operator = state.operator
+			const bracket = action.payload
+
+			switch (bracket) {
+				case OPERATOR.BRACKET_LEFT: {
+					if (!operator) {
+						if (currentValue === '0') {
+							state.currentValue = bracket
+						}
+						if (
+							currentValue.lastIndexOf(bracket) ===
+							currentValue.length - 1
+						) {
+							state.currentValue = currentValue + bracket
+						}
+					}
+				}
+			}
+		},
 	},
 })
 
@@ -220,8 +257,9 @@ export const calculatorReducer = calculatorSlice.reducer
 export const {
 	setCurrentValue,
 	removeLastChar,
-	removeAllChar,
+	resetAll,
 	swapSignValue,
 	setOperator,
 	mathOperation,
+	setBracket,
 } = calculatorSlice.actions

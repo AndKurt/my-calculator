@@ -35,6 +35,15 @@ export class SettingsPageClass extends Component<
 			)
 		}
 
+		const handleClear = () => {
+			const currentTheme = 'themeLight'
+			handleChangeTheme(currentTheme)
+			localStorage.setItem(
+				'theme',
+				JSON.stringify(currentTheme)
+			)
+		}
+
 		return (
 			<SettingsWrapper>
 				<SettingsContainer>
@@ -46,7 +55,9 @@ export class SettingsPageClass extends Component<
 						<option value="themeLight">Light Theme</option>
 						<option value="themeDark">Dark Theme</option>
 					</Select>
-					<ClearBtn>Clear All History</ClearBtn>
+					<ClearBtn onClick={handleClear}>
+						Clear All History
+					</ClearBtn>
 				</SettingsContainer>
 			</SettingsWrapper>
 		)

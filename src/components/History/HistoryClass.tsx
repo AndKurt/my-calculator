@@ -1,4 +1,3 @@
-import { RootState } from '../../redux/store'
 import { store } from '@App/App'
 import React, { Component } from 'react'
 import {
@@ -6,7 +5,6 @@ import {
 	HistoryWrapper,
 	ListItem,
 } from './componets'
-import { connect } from 'react-redux'
 
 export interface IHistoryProps {
 	isShowHistory: boolean;
@@ -51,12 +49,3 @@ export class HistoryClass extends Component<IHistoryProps> {
 		)
 	}
 }
-
-const mapStateToProps = (state: RootState) => {
-	return {
-		arrayExpressions:
-			state.calculatorReducer.arrayExpressions,
-	}
-}
-
-export default connect(mapStateToProps)(HistoryClass)

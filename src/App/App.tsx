@@ -6,7 +6,7 @@ import { ThemeProvider } from 'styled-components'
 import { themeDark, themeLight } from '@styles/theme'
 import { getThemeFromLS } from '@utils/localStorageFunc'
 import { Provider } from 'react-redux'
-import { setupStore } from '../redux/'
+import { setupStore } from '@redux/store'
 
 export const store = setupStore()
 

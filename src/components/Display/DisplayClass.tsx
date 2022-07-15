@@ -1,19 +1,20 @@
 import { store } from '@App/App'
-import { connect } from 'react-redux'
 import React, { Component } from 'react'
 import {
 	DisplayWrapper,
 	ExpressionField,
 	UserValueField,
 } from './componets'
-import { RootState } from '../../redux/store'
 
 interface IDisplay {
 	currentValue: string;
 	expression: string;
 }
 
-class DisplayClass extends Component<IDisplay, IDisplay> {
+export class DisplayClass extends Component<
+	IDisplay,
+	IDisplay
+> {
 	constructor(props: IDisplay) {
 		super(props)
 
@@ -43,13 +44,3 @@ class DisplayClass extends Component<IDisplay, IDisplay> {
 		)
 	}
 }
-
-const mapStateToProps = (state: RootState) => {
-	return {
-		currentValue: state.calculatorReducer.currentValue,
-		expression:
-			state.calculatorReducer.expression.join(' '),
-	}
-}
-
-export default connect(mapStateToProps)(DisplayClass)

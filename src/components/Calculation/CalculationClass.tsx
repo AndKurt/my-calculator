@@ -1,13 +1,13 @@
-import { ControlPanelClass } from '@components/ControlPanel'
-import { DisplayClass } from '@components/Display'
-import { HistoryClass } from '@components/History'
-import { KeypadClass } from '@components/Keypad'
 import React, { Component } from 'react'
+import { ControlPanelClass } from '@components/ControlPanel'
+import { VisibleDisplayClass } from '@containers/Display'
 import {
 	CalculationHelper,
 	CalculationWrapper,
 	HistoryHelper,
 } from './componets'
+import { VisibleKeypdaClass } from '@containers/Keypad'
+import { VisibleHistoryClass } from '@containers/History'
 
 interface IHistoryState {
 	isShow: boolean;
@@ -36,8 +36,8 @@ export class CalculationClass extends Component<
 			<CalculationWrapper>
 				<CalculationHelper
 					className={isShowHistory ? 'active' : ''}>
-					<DisplayClass />
-					<KeypadClass />
+					<VisibleDisplayClass />
+					<VisibleKeypdaClass />
 				</CalculationHelper>
 				<HistoryHelper
 					className={isShowHistory ? 'active' : ''}>
@@ -45,7 +45,9 @@ export class CalculationClass extends Component<
 						isShowHistory={isShowHistory}
 						handleShowHistory={this.HandleShowHistory}
 					/>
-					<HistoryClass isShowHistory={isShowHistory} />
+					<VisibleHistoryClass
+						isShowHistory={isShowHistory}
+					/>
 				</HistoryHelper>
 			</CalculationWrapper>
 		)

@@ -10,29 +10,19 @@ import {
 	KeyPadWrapper,
 	SpecBtn,
 } from './componets'
-import { connect } from 'react-redux'
-import { 
-	setCurrentValue, 
-	removeLastChar, 
-	removeAllChar, 
-	swapSignValue,
-	setOperator, 
-	mathOperation,
-} from '../../redux/reducers/calculator'
-import { AppDispatch } from '../../redux/'
 import { OPERATOR } from '@constants/operators'
 
 interface IKeyPadClassProps {
 	setCurrentValue: (num: number | string) => void;
 	removeLastChar: () => void;
-	removeAllChar: () => void;
+	resetAll: () => void;
 	swapSignValue: () => void;
 	setOperator: (operator: string) => void;
 	mathOperation: () => void;
+	setBracket: (bracket: string) => void;
 }
 
-class KeypadClass extends Component<IKeyPadClassProps> {
-	
+export class KeypadClass extends Component<IKeyPadClassProps> {
 	handelClick = (e: MouseEvent<HTMLElement>) => {
 		const buttonValue = (e.target as HTMLButtonElement).value
 		if (buttonValue) {
@@ -51,7 +41,7 @@ class KeypadClass extends Component<IKeyPadClassProps> {
 							this.props.setOperator(OPERATOR.PERCENTAGE)
 							break
 						case OPERATOR.REMOVE_ALL:					
-							this.props.removeAllChar()
+							this.props.resetAll()
 							break
 						case OPERATOR.SWAP_SIGN:
 							this.props.swapSignValue()
@@ -72,10 +62,10 @@ class KeypadClass extends Component<IKeyPadClassProps> {
 							this.props.mathOperation()
 							break
 						case OPERATOR.BRACKET_LEFT:
-							this.props.setCurrentValue(OPERATOR.BRACKET_LEFT)
+							this.props.setBracket(OPERATOR.BRACKET_LEFT)
 							break
 						case OPERATOR.BRACKET_RIGHT:
-							this.props.setCurrentValue(OPERATOR.BRACKET_RIGHT)
+							this.props.setBracket(OPERATOR.BRACKET_RIGHT)
 							break
 
 							
@@ -106,16 +96,3 @@ class KeypadClass extends Component<IKeyPadClassProps> {
 		)
 	}
 }
-
-const mapDispatchToProps  = (dispatch: AppDispatch) => {
-	return {
-		setCurrentValue: (num) => dispatch(setCurrentValue(num)),
-		removeLastChar: () => dispatch(removeLastChar()),
-		removeAllChar: () => dispatch(removeAllChar()),
-		swapSignValue: () => dispatch(swapSignValue()),
-		setOperator: (operator: string) => dispatch(setOperator(operator)),
-		mathOperation: () => dispatch(mathOperation()),
-	}
-}
-
-export default connect(null, mapDispatchToProps)(KeypadClass)

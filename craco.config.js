@@ -13,6 +13,10 @@ module.exports = {
 				__dirname,
 				'src/constants/'
 			),
+			'@containers': path.resolve(
+				__dirname,
+				'src/containers/'
+			),
 			'@redux': path.resolve(__dirname, 'src/redux/'),
 			'@styles': path.resolve(__dirname, 'src/styles/'),
 			'@screens': path.resolve(__dirname, 'src/screens/'),
