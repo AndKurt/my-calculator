@@ -12,7 +12,8 @@ import {
 export const SettingsPage = ({
 	handleChangeTheme,
 }: ChangeTheme) => {
-	const [theme] = useState(() => getThemeFromLS())
+	const [theme] =
+		useState < string > (() => getThemeFromLS())
 
 	const handleChange = (
 		e: ChangeEvent<HTMLSelectElement>

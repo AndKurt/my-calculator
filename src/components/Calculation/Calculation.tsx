@@ -8,6 +8,7 @@ import {
 	CalculationWrapper,
 	HistoryHelper,
 } from './componets'
+import { ErrorBoundary } from '@components/ErrorBoundary'
 
 export const Calculation = () => {
 	const [isShowHistory, setIsShowHistory] = useState(true)
@@ -19,16 +20,28 @@ export const Calculation = () => {
 		<CalculationWrapper>
 			<CalculationHelper
 				className={isShowHistory ? 'active' : ''}>
-				<Display />
-				<Keypad />
+				<ErrorBoundary
+					errorText={'Display failed to load.'}
+					children={<Display />}></ErrorBoundary>
+				<ErrorBoundary
+					errorText={'Keypad failed to load.'}
+					children={<Keypad />}></ErrorBoundary>
 			</CalculationHelper>
 			<HistoryHelper
 				className={isShowHistory ? 'active' : ''}>
-				<ControlPanel
-					isShowHistory={isShowHistory}
-					handleShowHistory={handleShowHistory}
-				/>
-				<History isShowHistory={isShowHistory} />
+				<ErrorBoundary
+					errorText={'Control panel failed to load.'}
+					children={
+						<ControlPanel
+							isShowHistory={isShowHistory}
+							handleShowHistory={handleShowHistory}
+						/>
+					}></ErrorBoundary>
+				<ErrorBoundary
+					errorText={'History failed to load.'}
+					children={
+						<History isShowHistory={isShowHistory} />
+					}></ErrorBoundary>
 			</HistoryHelper>
 		</CalculationWrapper>
 	)

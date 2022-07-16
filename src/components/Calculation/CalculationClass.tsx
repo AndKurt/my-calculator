@@ -8,6 +8,7 @@ import {
 } from './componets'
 import { VisibleKeypdaClass } from '@containers/Keypad'
 import { VisibleHistoryClass } from '@containers/History'
+import { ErrorBoundary } from '@components/ErrorBoundary'
 
 interface IHistoryState {
 	isShow: boolean;
@@ -36,18 +37,34 @@ export class CalculationClass extends Component<
 			<CalculationWrapper>
 				<CalculationHelper
 					className={isShowHistory ? 'active' : ''}>
-					<VisibleDisplayClass />
-					<VisibleKeypdaClass />
+					<ErrorBoundary
+						errorText={'Display failed to load.'}
+						children={
+							<VisibleDisplayClass />
+						}></ErrorBoundary>
+					<ErrorBoundary
+						errorText={'Keypad failed to load.'}
+						children={
+							<VisibleKeypdaClass />
+						}></ErrorBoundary>
 				</CalculationHelper>
 				<HistoryHelper
 					className={isShowHistory ? 'active' : ''}>
-					<ControlPanelClass
-						isShowHistory={isShowHistory}
-						handleShowHistory={this.handleShowHistory}
-					/>
-					<VisibleHistoryClass
-						isShowHistory={isShowHistory}
-					/>
+					<ErrorBoundary
+						errorText={'Control panel failed to load.'}
+						children={
+							<ControlPanelClass
+								isShowHistory={isShowHistory}
+								handleShowHistory={this.handleShowHistory}
+							/>
+						}></ErrorBoundary>
+					<ErrorBoundary
+						errorText={'History failed to load.'}
+						children={
+							<VisibleHistoryClass
+								isShowHistory={isShowHistory}
+							/>
+						}></ErrorBoundary>
 				</HistoryHelper>
 			</CalculationWrapper>
 		)

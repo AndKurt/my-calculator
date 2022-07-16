@@ -24,7 +24,6 @@ export const Keypad = () => {
 	const dispatch = useAppDispatch()
 
 	const handelClick = (e: MouseEvent<HTMLElement>) => {
-		
 		const buttonValue = (e.target as HTMLButtonElement).value
 		if (buttonValue) {
 			if (!isNaN(Number(buttonValue))) {
