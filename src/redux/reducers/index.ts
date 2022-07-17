@@ -4,6 +4,5 @@ export {
 	removeLastChar,
 	resetAll,
 	swapSignValue,
-	setOperator,
 	mathOperation,
 } from './calculator'

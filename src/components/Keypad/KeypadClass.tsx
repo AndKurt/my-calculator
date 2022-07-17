@@ -30,7 +30,6 @@ export class KeypadClass extends Component<IKeyPadClassProps> {
 						this.props.setCurrentValue(OPERATOR.DOT)
 						break
 					case OPERATOR.PERCENTAGE:
-						this.props.setOperator(OPERATOR.PERCENTAGE)
 						break
 					case OPERATOR.REMOVE_ALL:
 						this.props.resetAll()
@@ -39,16 +38,12 @@ export class KeypadClass extends Component<IKeyPadClassProps> {
 						this.props.swapSignValue()
 						break
 					case OPERATOR.ADD:
-						this.props.setOperator(OPERATOR.ADD)
 						break
 					case OPERATOR.SUBSTRACT:
-						this.props.setOperator(OPERATOR.SUBSTRACT)
 						break
 					case OPERATOR.DIVIDE:
-						this.props.setOperator(OPERATOR.DIVIDE)
 						break
 					case OPERATOR.MULTIPLE:
-						this.props.setOperator(OPERATOR.MULTIPLE)
 						break
 					case OPERATOR.EQUAL:
 						this.props.mathOperation()

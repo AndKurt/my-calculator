@@ -22,6 +22,5 @@ export interface IKeyPadClassProps {
 	removeLastChar: () => void;
 	resetAll: () => void;
 	swapSignValue: () => void;
-	setOperator: (operator: string) => void;
 	mathOperation: () => void;
 }

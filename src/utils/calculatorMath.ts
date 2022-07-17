@@ -43,14 +43,18 @@ export const expressionCalculator = (expr: string) => {
 
 let plusMinus = (newArr) => {
 	for (let i = 0; i < newArr.length; i++) {
-		if (newArr[i] === '+') {
+		if (newArr[i] === OPERATOR.ADD) {
 			newArr.splice(i - 1, 3, +newArr[i - 1] + +newArr[i + 1])
-
 			i = -1
 		}
 
-		if (newArr[i] === '-') {
+		if (newArr[i] === OPERATOR.SUBSTRACT) {
 			newArr.splice(i - 1, 3, +newArr[i - 1] - +newArr[i + 1])
+			i = -1
+		}
+
+		if (newArr[i] === OPERATOR.PERCENTAGE) {
+			newArr.splice(i - 1, 3, +newArr[i - 1] % +newArr[i + 1])
 			i = -1
 		}
 	}
@@ -60,12 +64,12 @@ let plusMinus = (newArr) => {
 
 let multipleDevide = (newArr) => {
 	for (let i = 0; i < newArr.length; i++) {
-		if (newArr[i] === '*') {
+		if (newArr[i] === OPERATOR.MULTIPLE) {
 			newArr.splice(i - 1, 3, +newArr[i - 1] * +newArr[i + 1])
 			i = -1
 		}
 
-		if (newArr[i] === '/') {
+		if (newArr[i] === OPERATOR.DIVIDE) {
 			if (+newArr[i + 1] !== 0) {
 				newArr.splice(i - 1, 3, +newArr[i - 1] / +newArr[i + 1])
 				i = -1

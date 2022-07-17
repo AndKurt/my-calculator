@@ -12,18 +12,13 @@ import { THEME } from '@constants/operators'
 export const store = setupStore()
 
 export const App = () => {
-	const [theme, setTheme] =
-		useState < string > (() => getThemeFromLS())
+	const [theme, setTheme] = useState < string > (() => getThemeFromLS())
 
-	const handleChangeTheme = (theme: string) =>
-		setTheme(theme)
+	const handleChangeTheme = (theme: string) => setTheme(theme)
 
 	return (
 		<Provider store={store}>
-			<ThemeProvider
-				theme={
-					theme === THEME.LIGHT ? themeLight : themeDark
-				}>
+			<ThemeProvider theme={theme === THEME.LIGHT ? themeLight : themeDark}>
 				<Header />
 				<Router handleChangeTheme={handleChangeTheme} />
 				<GlobalStyles />
