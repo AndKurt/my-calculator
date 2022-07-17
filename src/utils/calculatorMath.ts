@@ -22,12 +22,6 @@ export const expressionCalculator = (expr: string) => {
 	} else {
 		newArr = expr
 	}
-	//if (
-	//	newArr.filter((bracket: string) => bracket === '(').length !==
-	//	newArr.filter((bracket: string) => bracket === ')').length
-	//) {
-	//	throw new Error('ExpressionError: Brackets must be paired')
-	//}
 
 	let valueInBrackets: any = []
 	let openBracketIndex = newArr.lastIndexOf('(')
@@ -38,6 +32,7 @@ export const expressionCalculator = (expr: string) => {
 		newArr.splice(openBracketIndex, closedBracketIndex - openBracketIndex + 1, valueInBrackets)
 		return expressionCalculator(newArr)
 	}
+
 	return +plusMinus(multipleDevide(newArr))
 }
 

@@ -45,7 +45,6 @@ export const Keypad = () => {
 						dispatch(setCurrentValue(buttonValue))
 						break
 				}
-		
 		}
 	}
 

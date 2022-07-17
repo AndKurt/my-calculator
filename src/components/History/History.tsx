@@ -1,30 +1,18 @@
 import React from 'react'
 import { IHistoryProps } from '@interfaces/props'
-import {
-	HistoryList,
-	HistoryWrapper,
-	ListItem,
-} from './componets'
+import { HistoryList, HistoryWrapper, ListItem } from './componets'
 import { useAppSelector } from '@redux/hooks/hooks'
 
-export const History = ({
-	isShowHistory,
-}: IHistoryProps) => {
-	const { arrayExpressions } = useAppSelector(
-		(state) => state.calculatorReducer
-	)
+export const History = ({ isShowHistory }: IHistoryProps) => {
+	const { arrayExpressions } = useAppSelector((state) => state.calculatorReducer)
 
 	return (
-		<HistoryWrapper
-			className={isShowHistory ? 'active' : ''}>
+		<HistoryWrapper className={isShowHistory ? 'active' : ''}>
 			<h2>History</h2>
-			<HistoryList
-				className={!isShowHistory ? 'active' : ''}>
+			<HistoryList className={!isShowHistory ? 'active' : ''}>
 				{arrayExpressions &&
-					arrayExpressions.map((item: string) => (
-						<ListItem
-							key={item}
-							className={!isShowHistory ? 'active' : ''}>
+					arrayExpressions.map((item: string, index) => (
+						<ListItem key={item + index} className={!isShowHistory ? 'active' : ''}>
 							{item}
 						</ListItem>
 					))}

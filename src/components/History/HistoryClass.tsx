@@ -1,11 +1,7 @@
 import { store } from '@App/App'
 import { IHistoryProps } from '@interfaces/props'
 import React, { Component } from 'react'
-import {
-	HistoryList,
-	HistoryWrapper,
-	ListItem,
-} from './componets'
+import { HistoryList, HistoryWrapper, ListItem } from './componets'
 
 export class HistoryClass extends Component<IHistoryProps> {
 	constructor(props: IHistoryProps) {
@@ -27,16 +23,12 @@ export class HistoryClass extends Component<IHistoryProps> {
 	render() {
 		const { isShowHistory, arrayExpressions } = this.props
 		return (
-			<HistoryWrapper
-				className={isShowHistory ? 'active' : ''}>
+			<HistoryWrapper className={isShowHistory ? 'active' : ''}>
 				<h2>History</h2>
-				<HistoryList
-					className={!isShowHistory ? 'active' : ''}>
+				<HistoryList className={!isShowHistory ? 'active' : ''}>
 					{arrayExpressions &&
-						arrayExpressions.map((item: string) => (
-							<ListItem
-								key={item}
-								className={!isShowHistory ? 'active' : ''}>
+						arrayExpressions.map((item: string, index) => (
+							<ListItem key={item + index} className={!isShowHistory ? 'active' : ''}>
 								{item}
 							</ListItem>
 						))}

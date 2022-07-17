@@ -1,5 +1,5 @@
 import { MAX_INPUT, OPERATOR } from '@constants/operators'
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice, current, PayloadAction } from '@reduxjs/toolkit'
 import { checkMissingBrackets, expressionCalculator } from '@utils/calculatorMath'
 import {
 	addFunc,
@@ -67,11 +67,11 @@ export const calculatorSlice = createSlice({
 										currentValue.slice(0, currentValue.length - 1) + OPERATOR.BRACKET_RIGHT.repeat(missingBracket)
 									state.expression = expression.slice(0, expression.length - 1) + operand
 								} else if (!isNaN(+lastSymbol)) {
-									state.currentValue = currentValue + OPERATOR.BRACKET_RIGHT.repeat(missingBracket)
-									state.expression = expression + operand
+									state.currentValue = currentValue + OPERATOR.BRACKET_RIGHT
+									state.expression = state.currentValue
 								} else {
 									state.currentValue = currentValue + '0' + OPERATOR.BRACKET_RIGHT.repeat(missingBracket)
-									state.expression = expression + '0' + operand
+									state.expression = state.currentValue
 								}
 							} else {
 								state.currentValue = currentValue + OPERATOR.BRACKET_RIGHT.repeat(missingBracket)
@@ -108,62 +108,52 @@ export const calculatorSlice = createSlice({
 						state.expression = expression + operand
 					}
 				}
+				if (!Object.values(OPERATOR).includes(lastSymbol)) {
+					state.currentValue = expression + operand
+					state.expression = expression + operand
+				}
 			}
 		},
 
 		removeLastChar: (state) => {
-			//let passValue: string | null = null
-			//if (state.expression.length === 1) {
-			//	if (state.expression[0].length === 1) {
-			//		passValue = '0'
-			//		state.currentValue = passValue
-			//		state.historyValue = passValue
-			//		state.expression = ''
-			//	} else {
-			//		passValue = state.expression[0].slice(0, -1)
-			//		state.historyValue = passValue
-			//		state.expression = [passValue]
-			//		state.currentValue = passValue
-			//	}
-			//	state.operator = ''
-			//} else {
-			//	if (state.expression.length > 1) {
-			//		if (state.secondValue.length === 1) {
-			//			state.expression.pop()
-			//			passValue = '0'
-			//			state.secondValue = passValue
-			//			state.currentValue = passValue
-			//		} else {
-			//			state.expression.pop()
-			//			passValue = state.secondValue.slice(0, -1)
-			//			state.secondValue = passValue
-			//			state.currentValue = passValue
-			//			state.expression = [
-			//				...state.expression,
-			//				passValue,
-			//			]
-			//		}
-			//	}
-			//}
+			const expression = state.expression
+			const currentValue = state.currentValue
+
+			if (expression.length > 1) {
+				state.currentValue = currentValue.slice(0, -1)
+				state.expression = expression.slice(0, -1)
+			} else {
+				state.currentValue = '0'
+				state.expression = ''
+			}
 		},
 
 		resetAll: () => initialState,
 
 		swapSignValue: (state) => {
-			//const flippedvalue = flipSign(state.currentValue)
-			//const index = state.expression.lastIndexOf(
-			//	state.currentValue
-			//)
-			//state.expression[index] = flippedvalue
-			//state.currentValue = flippedvalue
-			//if (state.secondValue !== '0') {
-			//	state.secondValue = flippedvalue
-			//}
+			const lastSymbol = state.currentValue.slice(-1)
+
+			if (state.currentValue[0] === OPERATOR.SUBSTRACT) {
+				state.currentValue = state.currentValue.slice(1)
+				state.expression = state.currentValue
+			} else {
+				if (Object.values(OPERATOR).includes(lastSymbol) && lastSymbol !== OPERATOR.DOT) {
+					state.currentValue =
+						OPERATOR.SUBSTRACT + OPERATOR.BRACKET_LEFT + state.currentValue + '0' + OPERATOR.BRACKET_RIGHT
+				} else {
+					state.currentValue = OPERATOR.SUBSTRACT + OPERATOR.BRACKET_LEFT + state.currentValue + OPERATOR.BRACKET_RIGHT
+				}
+				state.expression = state.currentValue
+			}
 		},
 
 		mathOperation: (state) => {
 			const missingBracket = checkMissingBrackets(state.expression).brackets
-			const lastExpression = state.expression
+			let lastExpression = state.expression
+			const isMinus = lastExpression[0] === OPERATOR.SUBSTRACT
+			if (isMinus) {
+				lastExpression = lastExpression.slice(1)
+			}
 			const lastSymbol = lastExpression[lastExpression.length - 1]
 			let passedExpression = ''
 
@@ -172,20 +162,31 @@ export const calculatorSlice = createSlice({
 					passedExpression =
 						lastExpression.slice(0, lastExpression.length - 1) + OPERATOR.BRACKET_RIGHT.repeat(missingBracket)
 				}
-				if (!missingBracket) {
-					passedExpression = lastExpression + OPERATOR.BRACKET_RIGHT.repeat(missingBracket)
-				} else {
+				if (
+					lastSymbol === OPERATOR.SUBSTRACT ||
+					lastSymbol === OPERATOR.ADD ||
+					lastSymbol === OPERATOR.MULTIPLE ||
+					lastSymbol === OPERATOR.DIVIDE ||
+					lastSymbol === OPERATOR.PERCENTAGE
+				) {
 					passedExpression = lastExpression + '0' + OPERATOR.BRACKET_RIGHT.repeat(missingBracket)
+				} else {
+					passedExpression = lastExpression + OPERATOR.BRACKET_RIGHT.repeat(missingBracket)
 				}
 			} else {
 				passedExpression = lastExpression + OPERATOR.BRACKET_RIGHT.repeat(missingBracket)
 			}
 
 			if (passedExpression) {
-				const result = roundValue(expressionCalculator(passedExpression))
+				let result = roundValue(
+					isMinus ? -1 * expressionCalculator(passedExpression) : expressionCalculator(passedExpression)
+				)
 				state.currentValue = result
 				state.expression = result
-				state.arrayExpressions = [...state.arrayExpressions, passedExpression]
+				state.arrayExpressions = [
+					...state.arrayExpressions,
+					isMinus ? OPERATOR.SUBSTRACT + passedExpression : passedExpression,
+				]
 			}
 		},
 	},
