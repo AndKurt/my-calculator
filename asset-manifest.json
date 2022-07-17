@@ -1,11 +1,11 @@
 {
   "files": {
-    "main.js": "/my-calculator/static/js/main.e874d994.js",
+    "main.js": "/my-calculator/static/js/main.c65f5177.js",
     "static/media/HelveticaNeue.ttf": "/my-calculator/static/media/HelveticaNeue.50a6cd509ab1a89a5956.ttf",
     "index.html": "/my-calculator/index.html",
-    "main.e874d994.js.map": "/my-calculator/static/js/main.e874d994.js.map"
+    "main.c65f5177.js.map": "/my-calculator/static/js/main.c65f5177.js.map"
   },
   "entrypoints": [
-    "static/js/main.e874d994.js"
+    "static/js/main.c65f5177.js"
   ]
 }
