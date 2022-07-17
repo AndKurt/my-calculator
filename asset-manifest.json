@@ -1,0 +1,11 @@
+{
+  "files": {
+    "main.js": "/my-calculator/static/js/main.5f471613.js",
+    "static/media/HelveticaNeue.ttf": "/my-calculator/static/media/HelveticaNeue.50a6cd509ab1a89a5956.ttf",
+    "index.html": "/my-calculator/index.html",
+    "main.5f471613.js.map": "/my-calculator/static/js/main.5f471613.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.5f471613.js"
+  ]
+}
