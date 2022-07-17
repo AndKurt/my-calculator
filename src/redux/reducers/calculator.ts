@@ -33,6 +33,8 @@ export const calculatorSlice = createSlice({
 			const operand = action.payload
 			const expression = state.expression
 			const lastSymbol = expression[expression.length - 1]
+			const lastExpression = state.expression
+			const missingBracket = checkMissingBrackets(lastExpression).brackets
 
 			if (operand === OPERATOR.DOT && lastSymbol !== OPERATOR.BRACKET_RIGHT) {
 				if (currentValue === '0') {
@@ -58,8 +60,6 @@ export const calculatorSlice = createSlice({
 							state.expression = expression + operand
 						}
 					} else if (operand === OPERATOR.BRACKET_RIGHT) {
-						const lastExpression = state.expression
-						const missingBracket = checkMissingBrackets(lastExpression).brackets
 						if (missingBracket) {
 							if (currentValue !== '0') {
 								if (lastSymbol === OPERATOR.DOT) {
@@ -70,7 +70,15 @@ export const calculatorSlice = createSlice({
 									state.currentValue = currentValue + OPERATOR.BRACKET_RIGHT
 									state.expression = state.currentValue
 								} else {
-									state.currentValue = currentValue + '0' + OPERATOR.BRACKET_RIGHT.repeat(missingBracket)
+									if (missingBracket > 0) {
+										if (isNaN(+lastSymbol) && lastSymbol !== OPERATOR.BRACKET_RIGHT) {
+											state.currentValue = currentValue + '0' + OPERATOR.BRACKET_RIGHT
+										} else {
+											state.currentValue = currentValue + OPERATOR.BRACKET_RIGHT
+										}
+									} else {
+										state.currentValue = currentValue + '0' + OPERATOR.BRACKET_RIGHT.repeat(missingBracket)
+									}
 									state.expression = state.currentValue
 								}
 							} else {
@@ -109,8 +117,10 @@ export const calculatorSlice = createSlice({
 					}
 				}
 				if (!Object.values(OPERATOR).includes(lastSymbol)) {
-					state.currentValue = expression + operand
-					state.expression = expression + operand
+					if (operand === '0' && expression.length) {
+						state.currentValue = expression + operand
+						state.expression = expression + operand
+					}
 				}
 			}
 		},
@@ -132,14 +142,27 @@ export const calculatorSlice = createSlice({
 
 		swapSignValue: (state) => {
 			const lastSymbol = state.currentValue.slice(-1)
+			const missingBracket = checkMissingBrackets(state.expression).brackets
 
 			if (state.currentValue[0] === OPERATOR.SUBSTRACT) {
-				state.currentValue = state.currentValue.slice(1)
+				if (missingBracket > 0) {
+					state.currentValue = state.currentValue.slice(2)
+				} else {
+					state.currentValue = state.currentValue.slice(1)
+				}
 				state.expression = state.currentValue
 			} else {
 				if (Object.values(OPERATOR).includes(lastSymbol) && lastSymbol !== OPERATOR.DOT) {
-					state.currentValue =
-						OPERATOR.SUBSTRACT + OPERATOR.BRACKET_LEFT + state.currentValue + '0' + OPERATOR.BRACKET_RIGHT
+					if (missingBracket === 0) {
+						if (state.currentValue[0] === OPERATOR.BRACKET_LEFT) {
+							state.currentValue = OPERATOR.SUBSTRACT + state.currentValue.slice(1, -1)
+						} else {
+							state.currentValue = OPERATOR.SUBSTRACT + OPERATOR.BRACKET_LEFT + state.currentValue
+						}
+					} else {
+						state.currentValue =
+							OPERATOR.SUBSTRACT + OPERATOR.BRACKET_LEFT + state.currentValue + '0' + OPERATOR.BRACKET_RIGHT
+					}
 				} else {
 					state.currentValue = OPERATOR.SUBSTRACT + OPERATOR.BRACKET_LEFT + state.currentValue + OPERATOR.BRACKET_RIGHT
 				}
@@ -169,6 +192,8 @@ export const calculatorSlice = createSlice({
 					lastSymbol === OPERATOR.DIVIDE ||
 					lastSymbol === OPERATOR.PERCENTAGE
 				) {
+					passedExpression = lastExpression + '0' + OPERATOR.BRACKET_RIGHT.repeat(missingBracket)
+				} else if (lastSymbol === OPERATOR.BRACKET_LEFT) {
 					passedExpression = lastExpression + '0' + OPERATOR.BRACKET_RIGHT.repeat(missingBracket)
 				} else {
 					passedExpression = lastExpression + OPERATOR.BRACKET_RIGHT.repeat(missingBracket)
