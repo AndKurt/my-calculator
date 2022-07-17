@@ -53,12 +53,7 @@ export class KeypadClass extends Component<IKeyPadClassProps> {
 					case OPERATOR.EQUAL:
 						this.props.mathOperation()
 						break
-					case OPERATOR.BRACKET_LEFT:
-						this.props.setBracket(OPERATOR.BRACKET_LEFT)
-						break
-					case OPERATOR.BRACKET_RIGHT:
-						this.props.setBracket(OPERATOR.BRACKET_RIGHT)
-						break
+				
 
 					default:
 				}

@@ -6,5 +6,4 @@ export {
 	swapSignValue,
 	setOperator,
 	mathOperation,
-	setBracket,
 } from './calculator'

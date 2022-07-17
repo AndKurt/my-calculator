@@ -8,7 +8,6 @@ import {
 	swapSignValue,
 	setOperator,
 	mathOperation,
-	setBracket,
 } from '@redux/reducers/calculator'
 
 const mapDispatchToProps = (dispatch: AppDispatch) => {
@@ -21,8 +20,6 @@ const mapDispatchToProps = (dispatch: AppDispatch) => {
 		setOperator: (operator: string) =>
 			dispatch(setOperator(operator)),
 		mathOperation: () => dispatch(mathOperation()),
-		setBracket: (bracker: string) =>
-			dispatch(setBracket(bracker)),
 	}
 }
 

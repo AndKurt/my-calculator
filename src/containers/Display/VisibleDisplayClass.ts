@@ -5,8 +5,7 @@ import { RootState } from '@redux/store'
 const mapStateToProps = (state: RootState) => {
 	return {
 		currentValue: state.calculatorReducer.currentValue,
-		expression:
-			state.calculatorReducer.expression.join(' '),
+		expression: state.calculatorReducer.expression,
 	}
 }
 

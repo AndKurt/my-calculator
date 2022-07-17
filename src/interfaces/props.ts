@@ -24,5 +24,4 @@ export interface IKeyPadClassProps {
 	swapSignValue: () => void;
 	setOperator: (operator: string) => void;
 	mathOperation: () => void;
-	setBracket: (bracket: string) => void;
 }
