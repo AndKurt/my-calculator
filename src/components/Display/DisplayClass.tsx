@@ -2,16 +2,9 @@ import { store } from '@App/App'
 import { IDisplayProps } from '@interfaces/props'
 import { IDisplayState } from '@interfaces/state'
 import React, { Component } from 'react'
-import {
-	DisplayWrapper,
-	ExpressionField,
-	UserValueField,
-} from './componets'
+import { DisplayWrapper, ExpressionField, UserValueField } from './componets'
 
-export class DisplayClass extends Component<
-	IDisplayProps,
-	IDisplayState
-> {
+export class DisplayClass extends Component<IDisplayProps, IDisplayState> {
 	constructor(props: IDisplayProps) {
 		super(props)
 
@@ -34,7 +27,7 @@ export class DisplayClass extends Component<
 		const { currentValue, expression } = this.props
 
 		return (
-			<DisplayWrapper>
+			<DisplayWrapper data-cy="display">
 				<UserValueField>{currentValue}</UserValueField>
 				<ExpressionField>{expression}</ExpressionField>
 			</DisplayWrapper>

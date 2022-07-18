@@ -1,17 +1,11 @@
 import { IControlPanelProps } from '@interfaces/props'
 import React from 'react'
-import {
-	ControlPanelWrapper,
-	ShowHistoryBtn,
-} from './componets'
+import { ControlPanelWrapper, ShowHistoryBtn } from './componets'
 
-export const ControlPanel = ({
-	isShowHistory,
-	handleShowHistory,
-}: IControlPanelProps) => {
+export const ControlPanel = ({ isShowHistory, handleShowHistory }: IControlPanelProps) => {
 	return (
-		<ControlPanelWrapper>
-			<ShowHistoryBtn onClick={handleShowHistory}>
+		<ControlPanelWrapper data-cy="control-panel">
+			<ShowHistoryBtn data-cy="toggle-history" onClick={handleShowHistory}>
 				{isShowHistory ? 'Hide' : 'Show'}
 			</ShowHistoryBtn>
 		</ControlPanelWrapper>

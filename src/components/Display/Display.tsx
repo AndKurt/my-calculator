@@ -6,7 +6,7 @@ export const Display = () => {
 	const { currentValue, expression } = useAppSelector((state) => state.calculatorReducer)
 
 	return (
-		<DisplayWrapper>
+		<DisplayWrapper data-cy="display">
 			<UserValueField>{currentValue}</UserValueField>
 			<ExpressionField>{expression}</ExpressionField>
 		</DisplayWrapper>

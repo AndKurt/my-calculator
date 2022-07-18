@@ -33,17 +33,17 @@ export class KeypadClass extends Component<IKeyPadClassProps> {
 
 	render() {
 		return (
-			<KeyPadWrapper onClick={this.handelClick}>
+			<KeyPadWrapper onClick={this.handelClick} data-cy='keypad'>
 				<BtnsCommonContainer>
 					{keypadBtns.map(({ view }) => (
-						<CommonBtn key={view} value={view}>
+						<CommonBtn key={view} value={view} data-cy={`calc-btn-${view}`}>
 							{view}
 						</CommonBtn>
 					))}
 				</BtnsCommonContainer>
 				<BtnsSpecContainer>
 					{keypadSpecBtns.map(({ view }) => (
-						<SpecBtn key={view} value={view}>
+						<SpecBtn key={view} value={view} data-cy={`calc-btn-${view}`}>
 							{view}
 						</SpecBtn>
 					))}

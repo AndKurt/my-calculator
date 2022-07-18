@@ -17,7 +17,7 @@ import { 	setCurrentValue,
 	resetAll,
 	swapSignValue,
 	mathOperation,
-	 } from '@redux/reducers/calculator'
+} from '@redux/reducers/calculator'
 
 export const Keypad = () => {
 	const dispatch = useAppDispatch()
@@ -49,17 +49,17 @@ export const Keypad = () => {
 	}
 
 	return (
-		<KeyPadWrapper onClick={handelClick}>
+		<KeyPadWrapper onClick={handelClick} data-cy='keypad'>
 			<BtnsCommonContainer>
 				{keypadBtns.map(({ view }) => (
-					<CommonBtn key={view} value={view}>
+					<CommonBtn key={view} value={view} data-cy={`calc-btn-${view}`}>
 						{view}
 					</CommonBtn>
 				))}
 			</BtnsCommonContainer>
 			<BtnsSpecContainer>
 				{keypadSpecBtns.map(({ view }) => (
-					<SpecBtn key={view} value={view}>
+					<SpecBtn key={view} value={view} data-cy={`calc-btn-${view}`}>
 						{view}
 					</SpecBtn>
 				))}

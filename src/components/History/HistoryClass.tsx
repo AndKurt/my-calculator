@@ -23,7 +23,7 @@ export class HistoryClass extends Component<IHistoryProps> {
 	render() {
 		const { isShowHistory, arrayExpressions } = this.props
 		return (
-			<HistoryWrapper className={isShowHistory ? 'active' : ''}>
+			<HistoryWrapper data-cy="history" className={isShowHistory ? 'active' : ''}>
 				<h2>History</h2>
 				<HistoryList className={!isShowHistory ? 'active' : ''}>
 					{arrayExpressions &&
