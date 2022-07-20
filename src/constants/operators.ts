@@ -7,7 +7,7 @@ export const OPERATOR = {
 	BRACKET_RIGHT: ')',
 	DOT: '.',
 	MULTIPLE: '*',
-	DIVIDE: '/',
+	DEVIDE: '/',
 	ADD: '+',
 	SUBSTRACT: '-',
 	EQUAL: '=',

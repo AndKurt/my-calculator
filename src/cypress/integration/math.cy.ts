@@ -51,7 +51,7 @@ describe('Test for Math operations component', () => {
 
 	it('Check simple math operation DEVIDE', () => {
 		cy.get('[data-cy="calc-btn-4"]').click()
-		cy.get(`[data-cy^="calc-btn-${OPERATOR.DIVIDE}"]`).click()
+		cy.get(`[data-cy^="calc-btn-${OPERATOR.DEVIDE}"]`).click()
 		cy.get('[data-cy="calc-btn-2"]').click()
 		cy.get(`[data-cy^="calc-btn-${OPERATOR.EQUAL}"]`).click()
 		cy.get('[data-cy="display"]').find('h2').should('have.text', '2')
