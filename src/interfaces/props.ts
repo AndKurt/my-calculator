@@ -3,7 +3,7 @@ export type ChangeTheme = {
 }
 
 export interface ISettingsPageClassProps extends ChangeTheme {
-	resetAll: () => void;
+	clearHistory: () => void;
 }
 
 export interface IControlPanelProps {

@@ -163,6 +163,10 @@ export const calculatorSlice = createSlice({
 			state.expression = ''
 		},
 
+		clearHistory: (state) => {
+			state.arrayExpressions = []
+		},
+
 		swapSignValue: (state) => {
 			const expression = state.expression
 			const lastSymbol = expression.slice(-1)
@@ -180,10 +184,6 @@ export const calculatorSlice = createSlice({
 		mathOperation: (state) => {
 			const missingBracket = checkMissingBrackets(state.expression).brackets
 			let lastExpression = state.expression
-			//const isMinus = lastExpression[0] === SUBSTRACT
-			//if (isMinus) {
-			//	lastExpression = lastExpression.slice(1)
-			//}
 			const lastSymbol = lastExpression[lastExpression.length - 1]
 			let passedExpression = ''
 
@@ -209,8 +209,6 @@ export const calculatorSlice = createSlice({
 			}
 
 			if (passedExpression) {
-				console.log(passedExpression)
-
 				const expressionArray = getExpressionArray(passedExpression)
 
 				let result = roundValue(expressionCalculator(expressionArray))
@@ -224,4 +222,5 @@ export const calculatorSlice = createSlice({
 })
 
 export const calculatorReducer = calculatorSlice.reducer
-export const { setCurrentValue, removeLastChar, resetAll, swapSignValue, mathOperation } = calculatorSlice.actions
+export const { setCurrentValue, removeLastChar, resetAll, swapSignValue, mathOperation, clearHistory } =
+	calculatorSlice.actions

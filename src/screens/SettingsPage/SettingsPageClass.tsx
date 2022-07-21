@@ -21,11 +21,7 @@ export class SettingsPageClass extends Component<ISettingsPageClassProps, { them
 	}
 
 	handleClearAll = () => {
-		const currentTheme = THEME.LIGHT
-		this.props.handleChangeTheme(currentTheme)
-		this.setState({ theme: currentTheme })
-		localStorage.setItem('theme', JSON.stringify(currentTheme))
-		this.props.resetAll()
+		this.props.clearHistory()
 	}
 
 	render() {

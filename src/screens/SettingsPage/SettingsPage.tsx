@@ -1,7 +1,7 @@
 import { THEME } from '@constants/operators'
 import { ChangeTheme } from '@interfaces/props'
 import { useAppDispatch } from '@redux/hooks/hooks'
-import { resetAll } from '@redux/reducers/calculator'
+import { clearHistory } from '@redux/reducers/calculator'
 import { getThemeFromLS } from '@utils/localStorageFunc'
 import React, { ChangeEvent, useState } from 'react'
 import { ClearBtn, Select, SettingsContainer, SettingsWrapper } from './components'
@@ -18,11 +18,7 @@ export const SettingsPage = ({ handleChangeTheme }: ChangeTheme) => {
 	}
 
 	const handleClearAll = () => {
-		const currentTheme = THEME.LIGHT
-		handleChangeTheme(currentTheme)
-		setTheme(currentTheme)
-		localStorage.setItem('theme', JSON.stringify(currentTheme))
-		dispatch(resetAll())
+		dispatch(clearHistory())
 	}
 
 	return (

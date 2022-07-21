@@ -27,22 +27,18 @@ export class CalculationClass extends Component<{}, IHistoryState> {
 		const isShowHistory = this.state.isShow
 
 		return (
-			<CalculationWrapper>
-				<CalculationHelper data-cy="calc-helper" className={isShowHistory ? 'active' : ''}>
-					<ErrorBoundary errorText={'Display failed to load.'} children={<VisibleDisplayClass />}></ErrorBoundary>
-					<ErrorBoundary errorText={'Keypad failed to load.'} children={<VisibleKeypdaClass />}></ErrorBoundary>
-				</CalculationHelper>
-				<HistoryHelper data-cy="history-helper" className={isShowHistory ? 'active' : ''}>
-					<ErrorBoundary
-						errorText={'Control panel failed to load.'}
-						children={
-							<ControlPanelClass isShowHistory={isShowHistory} handleShowHistory={this.handleShowHistory} />
-						}></ErrorBoundary>
-					<ErrorBoundary
-						errorText={'History failed to load.'}
-						children={<VisibleHistoryClass isShowHistory={isShowHistory} />}></ErrorBoundary>
-				</HistoryHelper>
-			</CalculationWrapper>
+			<ErrorBoundary>
+				<CalculationWrapper>
+					<CalculationHelper data-cy="calc-helper" className={isShowHistory ? 'active' : ''}>
+						<VisibleDisplayClass />
+						<VisibleKeypdaClass />
+					</CalculationHelper>
+					<HistoryHelper data-cy="history-helper" className={isShowHistory ? 'active' : ''}>
+						<ControlPanelClass isShowHistory={isShowHistory} handleShowHistory={this.handleShowHistory} />
+						<VisibleHistoryClass isShowHistory={isShowHistory} />
+					</HistoryHelper>
+				</CalculationWrapper>
+			</ErrorBoundary>
 		)
 	}
 }

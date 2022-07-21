@@ -55,8 +55,23 @@ export const getExpressionArray = (expr: string) => {
 			i = j - 1
 		} else {
 			if (expr[i] === SUBSTRACT && i + 1 && isNaN(+expr[i - 1])) {
-				newArr.push(`${expr[i]}${expr[i + 1]}`)
-				i++
+				let str = SUBSTRACT
+				let limitLength = expr.length
+				for (let g = i + 1; g < limitLength; g++) {
+					if (!isNaN(+expr[g])) {
+						str += expr[g]
+					}
+					if (expr[g] === DOT) {
+						if (!str.includes(DOT)) {
+							str += expr[g]
+						}
+					}
+					if (Object.values(OPERATOR).includes(expr[g]) && expr[g] !== DOT) {
+						limitLength = g
+					}
+				}
+				newArr.push(str)
+				i = limitLength - 1
 			} else {
 				newArr.push(expr[i])
 			}

@@ -4,7 +4,8 @@ import theme from '@styles/theme'
 export const KeyPadWrapper = styled.div`
 	display: flex;
 	flex-direction: column;
-	width: 600px;
+	max-width: 600px;
+	width: 100%;
 	height: 100%;
 `
 
