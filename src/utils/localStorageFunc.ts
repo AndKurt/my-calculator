@@ -1,5 +1,3 @@
-import { THEME } from '@constants/operators'
-
 export const savePathToLS = (path: string) => {
 	localStorage.setItem('path', path ? path : '')
 }

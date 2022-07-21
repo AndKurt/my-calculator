@@ -42,7 +42,11 @@ export const calculatorSlice = createSlice({
 			if (operand === DOT && lastSymbol !== BRACKET_RIGHT) {
 				if (currentValue === '0') {
 					state.currentValue = state.currentValue + DOT
-					state.expression = expression.slice(0, expression.length - 1) + state.currentValue
+					if (expression.length) {
+						state.expression += state.currentValue
+					} else {
+						state.expression = expression.slice(0, expression.length - 1) + state.currentValue
+					}
 				} else {
 					if (Object.values(OPERATOR).includes(lastSymbol)) {
 						if (lastSymbol !== DOT) {
@@ -69,10 +73,10 @@ export const calculatorSlice = createSlice({
 				if (Object.values(OPERATOR).includes(operand)) {
 					if (operand === BRACKET_LEFT) {
 						if (currentValue === '0') {
-							state.currentValue = operand
+							//state.currentValue = operand
 							state.expression = expression + operand
 						} else if (isNaN(+lastSymbol)) {
-							state.currentValue = currentValue + operand
+							//state.currentValue = currentValue + operand
 							state.expression = expression + operand
 						}
 					} else if (operand === BRACKET_RIGHT) {
@@ -111,8 +115,7 @@ export const calculatorSlice = createSlice({
 							state.currentValue = currentValue + operand
 							state.expression = state.currentValue
 						} else {
-							state.currentValue = currentValue + operand
-							state.expression = expression + state.currentValue
+							state.expression += operand
 						}
 					}
 				} else if (operand !== '0') {
@@ -136,7 +139,11 @@ export const calculatorSlice = createSlice({
 						state.expression += operand
 					}
 				} else if (expression.length) {
-					state.currentValue = operand
+					if (operand === '0' && currentValue !== '0') {
+						state.currentValue += operand
+					} else {
+						state.currentValue = operand
+					}
 					state.expression += operand
 				} else if (!Object.values(OPERATOR).includes(lastSymbol)) {
 					if (operand === '0' && expression.length) {
