@@ -2,16 +2,7 @@ import { MAX_INPUT, OPERATOR } from '@constants/operators'
 import { createSlice, current, PayloadAction } from '@reduxjs/toolkit'
 import { checkMissingBrackets, expressionCalculator, getExpressionArray } from '@utils/calculatorMath'
 import { checkDotsInLastValue, countDots, countMathSigns, findLastIndexMathSign } from '@utils/helpers'
-import {
-	addFunc,
-	devideFunc,
-	flipSign,
-	getRemainderOfDivision,
-	limitInput,
-	multipleFunc,
-	roundValue,
-	substractFunc,
-} from '@utils/mathFunc'
+import { roundValue } from '@utils/helpers'
 
 export interface ICalculatorStore {
 	currentValue: string;
@@ -87,11 +78,8 @@ export const calculatorSlice = createSlice({
 						if (missingBracket) {
 							if (currentValue !== '0') {
 								if (lastSymbol === DOT) {
-									//state.currentValue =
-									//	currentValue.slice(0, currentValue.length - 1) + BRACKET_RIGHT.repeat(missingBracket)
 									state.expression = expression.slice(0, expression.length - 1) + operand
 								} else if (!isNaN(+lastSymbol)) {
-									//state.currentValue = currentValue + BRACKET_RIGHT
 									state.expression += BRACKET_RIGHT
 								} else {
 									if (missingBracket > 0) {
@@ -112,7 +100,6 @@ export const calculatorSlice = createSlice({
 						}
 					} else if (currentValue !== '0') {
 						if (!Object.values(OPERATOR).includes(lastSymbol)) {
-							//state.currentValue = currentValue + operand
 							state.expression = expression + operand
 						} else if (Object.values(OPERATOR).includes(operand) && lastSymbol === BRACKET_RIGHT && operand !== DOT) {
 							state.currentValue = currentValue + operand
@@ -177,41 +164,26 @@ export const calculatorSlice = createSlice({
 		},
 
 		swapSignValue: (state) => {
-			const lastSymbol = state.currentValue.slice(-1)
-			const missingBracket = checkMissingBrackets(state.expression).brackets
+			const expression = state.expression
+			const lastSymbol = expression.slice(-1)
+			const isMinusActive = expression.slice(-5) === '*(-1)'
 
-			if (state.currentValue[0] === SUBSTRACT) {
-				if (missingBracket > 0) {
-					state.currentValue = state.currentValue.slice(2)
-				} else {
-					state.currentValue = state.currentValue.slice(1)
-				}
-				state.expression = state.currentValue
+			if (isMinusActive) {
+				state.expression = expression.replace('*(-1)', '')
 			} else {
-				if (Object.values(OPERATOR).includes(lastSymbol) && lastSymbol !== DOT) {
-					if (missingBracket === 0) {
-						if (state.currentValue[0] === BRACKET_LEFT) {
-							state.currentValue = SUBSTRACT + state.currentValue.slice(1, -1)
-						} else {
-							state.currentValue = SUBSTRACT + BRACKET_LEFT + state.currentValue
-						}
-					} else {
-						state.currentValue = SUBSTRACT + BRACKET_LEFT + state.currentValue + '0' + BRACKET_RIGHT
-					}
-				} else {
-					state.currentValue = SUBSTRACT + BRACKET_LEFT + state.currentValue + BRACKET_RIGHT
+				if (expression.length && !Object.values(MATH_OPERATIONS).includes(lastSymbol)) {
+					state.expression += '*(-1)'
 				}
-				state.expression = state.currentValue
 			}
 		},
 
 		mathOperation: (state) => {
 			const missingBracket = checkMissingBrackets(state.expression).brackets
 			let lastExpression = state.expression
-			const isMinus = lastExpression[0] === SUBSTRACT
-			if (isMinus) {
-				lastExpression = lastExpression.slice(1)
-			}
+			//const isMinus = lastExpression[0] === SUBSTRACT
+			//if (isMinus) {
+			//	lastExpression = lastExpression.slice(1)
+			//}
 			const lastSymbol = lastExpression[lastExpression.length - 1]
 			let passedExpression = ''
 
@@ -237,14 +209,15 @@ export const calculatorSlice = createSlice({
 			}
 
 			if (passedExpression) {
-				const expressionArray = getExpressionArray(passedExpression)
-				let result = roundValue(
-					isMinus ? -1 * expressionCalculator(expressionArray) : expressionCalculator(expressionArray)
-				)
+				console.log(passedExpression)
 
+				const expressionArray = getExpressionArray(passedExpression)
+
+				let result = roundValue(expressionCalculator(expressionArray))
 				state.currentValue = result
 				state.expression = result
-				state.arrayExpressions = [...state.arrayExpressions, isMinus ? SUBSTRACT + passedExpression : passedExpression]
+
+				state.arrayExpressions = [...state.arrayExpressions, passedExpression]
 			}
 		},
 	},

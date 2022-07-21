@@ -1,5 +1,7 @@
 import { OPERATOR } from '@constants/operators'
 
+export const roundValue = (num: number) => (Math.round(num * 1000) / 1000).toString()
+
 export const countDots = (str: string) => {
 	return str.split('').reduce((acc, e) => {
 		if (e === OPERATOR.DOT) {

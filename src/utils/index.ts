@@ -1,2 +1,2 @@
 export * from './localStorageFunc'
-export * from './mathFunc'
+export * from './helpers'

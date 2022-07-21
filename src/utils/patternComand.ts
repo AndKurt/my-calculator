@@ -27,9 +27,6 @@ export class SubtractCommand {
 	}
 
 	execute(firstValue: number) {
-    if (!firstValue) {
-			return this.secondValue
-		}
 		return firstValue - this.secondValue
 	}
 }
@@ -41,9 +38,6 @@ export class MultiplyCommand {
 	}
 
 	execute(firstValue: number) {
-		if (!firstValue) {
-			return this.secondValue
-		}
 		return firstValue * this.secondValue
 	}
 }
@@ -55,9 +49,6 @@ export class DivideCommand {
 	}
 
 	execute(firstValue: number) {
-		if (!firstValue) {
-			return this.secondValue
-		}
 		return firstValue / this.secondValue
 	}
 }
@@ -69,9 +60,6 @@ export class RemainderOfDivCommand {
 	}
 
 	execute(firstValue: number) {
-		if (!firstValue) {
-			return this.secondValue
-		}
 		return firstValue % this.secondValue
 	}
 }

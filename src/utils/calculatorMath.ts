@@ -38,10 +38,10 @@ const calculator = new Calculator()
 const FIRST_PRIORITY_OPERATORS = [MULTIPLE, DEVIDE, PERCENTAGE]
 const SECOND_PRIORITY_OPERATORS = [ADD, SUBSTRACT]
 
-export const getExpressionArray = (expr) => {
+export const getExpressionArray = (expr: string) => {
 	let value = ''
 	const newArr: string[] = []
-	expr = expr.replace(/\s/g, '')
+	expr = expr.replace('*(-1)', '*-1')
 	for (let i = 0; i < expr.length; i++) {
 		if (expr[i] !== DOT && !isNaN(+expr[i])) {
 			let j = i
@@ -49,13 +49,22 @@ export const getExpressionArray = (expr) => {
 				value += expr[j]
 				j++
 			}
+
 			newArr.push(value)
 			value = ''
 			i = j - 1
 		} else {
-			newArr.push(expr[i])
+			if (expr[i] === SUBSTRACT && i + 1 && isNaN(+expr[i - 1])) {
+				newArr.push(`${expr[i]}${expr[i + 1]}`)
+				i++
+			} else {
+				newArr.push(expr[i])
+			}
 		}
 	}
+
+	console.log(newArr)
+
 	return newArr
 }
 
@@ -73,14 +82,31 @@ export const expressionCalculator = (newArr: string[]) => {
 	return calculate(calculate(newArr, FIRST_PRIORITY_OPERATORS), SECOND_PRIORITY_OPERATORS)
 }
 
-const calculate = (newArr, operationsArr) => {
+const calculate = (newArr: any, operationsArr: string[]) => {
 	for (let i = 0; i < newArr.length; i++) {
 		if (operationsArr.includes(newArr[i])) {
 			const operator = newArr[i]
 			const value = Number(newArr[i - 1])
 			const secondValue = Number(newArr[i + 1])
-			value && calculator.executeCommand(operations(value, operator))
-			secondValue && calculator.executeCommand(operations(secondValue, operator))
+			if (value) {
+				if (operator === SUBSTRACT) {
+					calculator.executeCommand(operations(value, operator))
+					if (calculator.value) {
+						calculator.value *= -1
+					}
+				}
+				if (operator === ADD || operator === MULTIPLE || operator === DEVIDE || operator === PERCENTAGE) {
+					calculator.value = value
+				}
+			} else {
+				if (operator === MULTIPLE || operator === DEVIDE || operator === PERCENTAGE) {
+					calculator.value = 0
+				} else {
+					calculator.executeCommand(operations(value, operator))
+					//console.log(222)
+				}
+			}
+			calculator.executeCommand(operations(secondValue, operator))
 			const result = calculator.value
 			newArr.splice(i - 1, 3, result)
 			calculator.value = 0
