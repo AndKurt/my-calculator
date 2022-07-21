@@ -3,6 +3,7 @@ import { createSlice, current, PayloadAction } from '@reduxjs/toolkit'
 import { checkMissingBrackets, expressionCalculator, getExpressionArray } from '@utils/calculatorMath'
 import { checkDotsInLastValue, countDots, countMathSigns, findLastIndexMathSign } from '@utils/helpers'
 import { roundValue } from '@utils/helpers'
+import { getDataFromLS } from '@utils/localStorageFunc'
 
 export interface ICalculatorStore {
 	currentValue: string;
@@ -13,7 +14,7 @@ export interface ICalculatorStore {
 const initialState: ICalculatorStore = {
 	currentValue: '0',
 	expression: '',
-	arrayExpressions: [],
+	arrayExpressions: getDataFromLS('history', []),
 }
 
 const { ADD, SUBSTRACT, MULTIPLE, DEVIDE, PERCENTAGE, DOT, BRACKET_LEFT, BRACKET_RIGHT } = OPERATOR

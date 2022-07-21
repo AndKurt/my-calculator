@@ -6,6 +6,22 @@ const font = css`
 	font-weight: normal;
 	font-size: 30px;
 	line-height: 36px;
+	@media (max-width: 620px) {
+		font-size: 25px;
+		line-height: 30px;
+	}
+	@media (max-width: 470px) {
+		font-size: 20px;
+		line-height: 25px;
+	}
+	@media (max-width: 400px) {
+		font-size: 17px;
+		line-height: 22px;
+	}
+	@media (max-width: 380px) {
+		font-size: 15px;
+		line-height: 20px;
+	}
 `
 const font30 = css`
 	${font}
@@ -16,6 +32,22 @@ const font32 = css`
 	font-size: 32px;
 	line-height: 38px;
 	font-weight: bold;
+	@media (max-width: 620px) {
+		font-size: 25px;
+		line-height: 30px;
+	}
+	@media (max-width: 470px) {
+		font-size: 20px;
+		line-height: 25px;
+	}
+	@media (max-width: 400px) {
+		font-size: 17px;
+		line-height: 22px;
+	}
+	@media (max-width: 380px) {
+		font-size: 15px;
+		line-height: 20px;
+	}
 `
 
 const font64 = css`
@@ -23,6 +55,22 @@ const font64 = css`
 	font-size: 64px;
 	line-height: 77px;
 	font-weight: bold;
+	@media (max-width: 620px) {
+		font-size: 25px;
+		line-height: 30px;
+	}
+	@media (max-width: 470px) {
+		font-size: 20px;
+		line-height: 25px;
+	}
+	@media (max-width: 400px) {
+		font-size: 20px;
+		line-height: 25px;
+	}
+	@media (max-width: 380px) {
+		font-size: 15px;
+		line-height: 20px;
+	}
 `
 
 // Color palette

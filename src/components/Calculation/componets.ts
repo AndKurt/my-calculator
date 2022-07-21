@@ -15,12 +15,19 @@ export const CalculationHelper = styled.div`
 	height: auto;
 	width: 92%;
 	padding: 0 23px;
-	border-right: 2px solid
-		${({ theme }) => theme.borderColor};
+	border-right: 2px solid ${({ theme }) => theme.borderColor};
 	transition: 0.5s;
+
+	@media (max-width: 570px) {
+		padding: 0 5px;
+		width: 85%;
+	}
 
 	&.active {
 		width: 80%;
+		@media (max-width: 570px) {
+			width: 70%;
+		}
 	}
 `
 
@@ -30,8 +37,14 @@ export const HistoryHelper = styled.div`
 	height: auto;
 	width: 8%;
 	transition: 0.5s;
+	@media (max-width: 570px) {
+		width: 15%;
+	}
 
 	&.active {
 		width: 20%;
+		@media (max-width: 570px) {
+			width: 30%;
+		}
 	}
 `

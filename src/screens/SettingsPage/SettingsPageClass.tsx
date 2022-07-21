@@ -1,6 +1,6 @@
 import { THEME } from '@constants/operators'
 import { ISettingsPageClassProps } from '@interfaces/props'
-import { getThemeFromLS } from '@utils/localStorageFunc'
+import { getDataFromLS } from '@utils/localStorageFunc'
 import React, { ChangeEvent, Component } from 'react'
 import { ClearBtn, Select, SettingsContainer, SettingsWrapper } from './components'
 
@@ -9,7 +9,7 @@ export class SettingsPageClass extends Component<ISettingsPageClassProps, { them
 		super(props)
 
 		this.state = {
-			theme: getThemeFromLS(),
+			theme: getDataFromLS('theme', THEME.LIGHT),
 		}
 	}
 

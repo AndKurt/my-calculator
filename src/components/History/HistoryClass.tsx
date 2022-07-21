@@ -20,6 +20,10 @@ export class HistoryClass extends Component<IHistoryProps> {
 		})
 	}
 
+	componentDidUpdate() {
+		localStorage.setItem('history', JSON.stringify(this.props.arrayExpressions))
+	}
+
 	render() {
 		const { isShowHistory, arrayExpressions } = this.props
 		return (

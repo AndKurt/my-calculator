@@ -24,6 +24,10 @@ export const SettingsContainer = styled.div`
 		line-height: 29px;
 		font-weight: bold;
 	}
+
+	@media (max-width: 570px) {
+		padding: 45px 10px;
+	}
 `
 
 export const Select = styled.select`
@@ -40,6 +44,11 @@ export const Select = styled.select`
 	cursor: pointer;
 	margin-bottom: 32px;
 	outline: none;
+
+	@media (max-width: 570px) {
+		width: 300px;
+		height: 65px;
+	}
 
 	option {
 		${theme.fontSizes.font30}
@@ -60,4 +69,9 @@ export const ClearBtn = styled.button`
 	height: 93px;
 	border-radius: 8px;
 	cursor: pointer;
+
+	@media (max-width: 570px) {
+		width: 300px;
+		height: 65px;
+	}
 `

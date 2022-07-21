@@ -2,12 +2,12 @@ import { THEME } from '@constants/operators'
 import { ChangeTheme } from '@interfaces/props'
 import { useAppDispatch } from '@redux/hooks/hooks'
 import { clearHistory } from '@redux/reducers/calculator'
-import { getThemeFromLS } from '@utils/localStorageFunc'
+import { getDataFromLS } from '@utils/localStorageFunc'
 import React, { ChangeEvent, useState } from 'react'
 import { ClearBtn, Select, SettingsContainer, SettingsWrapper } from './components'
 
 export const SettingsPage = ({ handleChangeTheme }: ChangeTheme) => {
-	const [theme, setTheme] = useState < string > (() => getThemeFromLS())
+	const [theme, setTheme] = useState < string > (() => getDataFromLS('theme', THEME.LIGHT))
 	const dispatch = useAppDispatch()
 
 	const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {

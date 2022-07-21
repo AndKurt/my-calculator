@@ -10,6 +10,15 @@ export const HeaderWrapper = styled.header`
 	height: 120px;
 	width: 100%;
 	color: ${({ theme }) => theme.textColorHeader};
+
+	@media (max-width: 700px) {
+		padding: 42px 15px;
+		display: flex;
+		align-items: center;
+	}
+	@media (max-width: 570px) {
+		padding: 42px 15px;
+	}
 `
 
 export const HeaderContainer = styled.header`
@@ -27,13 +36,16 @@ export const NavigationBtn = styled(NavLink)`
 	${theme.fontSizes.font32}
 	cursor: pointer;
 
+	@media (max-width: 570px) {
+		margin-right: 10px;
+	}
+
 	&:last-child {
 		margin-right: 0;
 	}
 
 	&.active {
-		border-bottom: 2px solid
-			${({ theme }) => theme.textColorHeader};
+		border-bottom: 2px solid ${({ theme }) => theme.textColorHeader};
 		color: ${({ theme }) => theme.textColorHeader};
 	}
 `

@@ -78,8 +78,6 @@ export const getExpressionArray = (expr: string) => {
 		}
 	}
 
-	console.log(newArr)
-
 	return newArr
 }
 
@@ -118,7 +116,6 @@ const calculate = (newArr: any, operationsArr: string[]) => {
 					calculator.value = 0
 				} else {
 					calculator.executeCommand(operations(value, operator))
-					//console.log(222)
 				}
 			}
 			calculator.executeCommand(operations(secondValue, operator))
