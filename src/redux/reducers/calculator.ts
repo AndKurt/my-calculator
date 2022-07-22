@@ -41,15 +41,22 @@ export const calculatorSlice = createSlice({
 
 			if (operand === DOT && lastSymbol !== BRACKET_RIGHT) {
 				if (currentValue === '0') {
-					state.currentValue = state.currentValue + DOT
+					state.currentValue += DOT
 					if (expression.length) {
-						state.expression += state.currentValue
+						if (lastSymbol === BRACKET_LEFT) {
+							state.expression += '0.'
+						} else {
+							state.expression += DOT
+						}
 					} else {
 						state.expression = expression.slice(0, expression.length - 1) + state.currentValue
 					}
 				} else {
 					if (Object.values(OPERATOR).includes(lastSymbol)) {
-						if (lastSymbol !== DOT) {
+						if (lastSymbol === BRACKET_LEFT) {
+							state.currentValue = '0.'
+							state.expression += '0.'
+						} else if (lastSymbol !== DOT) {
 							state.currentValue = currentValue + '0.'
 							state.expression = expression + '0.'
 						}
@@ -57,27 +64,31 @@ export const calculatorSlice = createSlice({
 					if (Object.values(MATH_OPERATIONS).includes(lastSymbol)) {
 						state.currentValue = '0.'
 					} else {
-						if (lastSymbol !== DOT) {
-							if (checkDotsInLastValue(expression) < 1) {
-								state.currentValue = currentValue + operand
-								state.expression = expression + operand
+						if (lastSymbol !== BRACKET_LEFT) {
+							if (lastSymbol !== DOT) {
+								if (checkDotsInLastValue(expression) < 1) {
+									state.currentValue = currentValue + operand
+									state.expression = expression + operand
+								}
 							}
-						}
-						if (countDots(expression) > countMathSigns(expression)) {
-							state.currentValue = currentValue
-							state.expression = expression
+							if (countDots(expression) > countMathSigns(expression)) {
+								state.currentValue = currentValue
+								state.expression = expression
+							}
 						}
 					}
 				}
 			} else {
 				if (Object.values(OPERATOR).includes(operand)) {
 					if (operand === BRACKET_LEFT) {
-						if (currentValue === '0') {
-							//state.currentValue = operand
-							state.expression = expression + operand
-						} else if (isNaN(+lastSymbol)) {
-							//state.currentValue = currentValue + operand
-							state.expression = expression + operand
+						if (lastSymbol !== DOT) {
+							if (currentValue === '0') {
+								//state.currentValue = operand
+								state.expression = expression + operand
+							} else if (isNaN(+lastSymbol)) {
+								//state.currentValue = currentValue + operand
+								state.expression = expression + operand
+							}
 						}
 					} else if (operand === BRACKET_RIGHT) {
 						if (missingBracket) {
@@ -140,11 +151,19 @@ export const calculatorSlice = createSlice({
 					}
 				} else if (expression.length) {
 					if (operand === '0' && currentValue !== '0') {
-						state.currentValue += operand
+						if (Object.values(OPERATOR).includes(lastSymbol)) {
+							if (lastSymbol === DOT) {
+								state.currentValue += operand
+							} else {
+								state.currentValue = operand
+							}
+						} else {
+							state.currentValue += operand
+						}
+						state.expression += operand
 					} else {
 						state.currentValue = operand
 					}
-					state.expression += operand
 				} else if (!Object.values(OPERATOR).includes(lastSymbol)) {
 					if (operand === '0' && expression.length) {
 						state.currentValue = expression + operand
