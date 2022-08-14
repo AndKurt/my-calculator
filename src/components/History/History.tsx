@@ -4,23 +4,23 @@ import { HistoryList, HistoryWrapper, ListItem } from './componets'
 import { useAppSelector } from '@redux/hooks/hooks'
 
 export const History = ({ isShowHistory }: IHistoryProps) => {
-	const { arrayExpressions } = useAppSelector((state) => state.calculatorReducer)
+  const { arrayExpressions } = useAppSelector((state) => state.calculatorReducer)
 
-	useEffect(() => {
-		localStorage.setItem('history', JSON.stringify(arrayExpressions))
-	}, [arrayExpressions])
+  useEffect(() => {
+    localStorage.setItem('history', JSON.stringify(arrayExpressions))
+  }, [arrayExpressions])
 
-	return (
-		<HistoryWrapper data-cy="history" className={isShowHistory ? 'active' : ''}>
-			<h2>History</h2>
-			<HistoryList className={!isShowHistory ? 'active' : ''}>
-				{arrayExpressions &&
-					arrayExpressions.map((item: string, index) => (
-						<ListItem key={item + index} className={!isShowHistory ? 'active' : ''}>
-							{item}
-						</ListItem>
-					))}
-			</HistoryList>
-		</HistoryWrapper>
-	)
+  return (
+    <HistoryWrapper data-cy="history">
+      <h2>History</h2>
+      <HistoryList isShowHistory={isShowHistory}>
+        {arrayExpressions &&
+          arrayExpressions.map((item: string, index) => (
+            <ListItem key={item + index} isShowHistory={isShowHistory}>
+              {item}
+            </ListItem>
+          ))}
+      </HistoryList>
+    </HistoryWrapper>
+  )
 }

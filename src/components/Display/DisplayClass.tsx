@@ -1,6 +1,6 @@
-import { store } from '@App/App'
 import { IDisplayProps } from '@interfaces/props'
 import { IDisplayState } from '@interfaces/state'
+import { store } from '@redux/store'
 import React, { Component } from 'react'
 import { DisplayWrapper, ExpressionField, UserValueField } from './componets'
 

@@ -1,4 +1,5 @@
 import { OPERATOR } from '@constants/operators'
+import { useAppDispatch } from '@redux/hooks/hooks'
 import {
 	AddCommand,
 	Calculator,
