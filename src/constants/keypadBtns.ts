@@ -19,9 +19,9 @@ export const keypadBtns = [
 	{ view: '0' },
 	{ view: '.' },
 	{ view: '-' },
-]
+];
 
 export const keypadSpecBtns = [
 	{ view: 'CE' },
 	{ view: '=' },
-]
+];

@@ -11,11 +11,11 @@ export const OPERATOR = {
 	ADD: '+',
 	SUBSTRACT: '-',
 	EQUAL: '=',
-}
+};
 
-export const MAX_INPUT = 9
+export const MAX_INPUT = 9;
 
 export const THEME = {
 	LIGHT: 'lightTheme',
 	DARK: 'darkTheme',
-}
+};

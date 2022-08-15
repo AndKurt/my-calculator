@@ -1,24 +1,24 @@
-import styled, { css } from 'styled-components/macro'
+import styled, { css } from 'styled-components/macro';
 
 export const KeyPadWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  height: 100%;
   max-width: 600px;
   width: 100%;
-  height: 100%;
-`
+`;
 
 const btnTemplate = css`
-  display: flex;
-  justify-content: center;
   align-items: center;
-  height: 110px;
-  width: 110px;
-  border-radius: 32px;
-  border: 2px solid ${({ theme }) => theme.borderColor};
   background: ${({ theme }) => theme.buttonColor};
+  border: 2px solid ${({ theme }) => theme.borderColor};
+  border-radius: 32px;
   color: ${({ theme }) => theme.textColor};
   cursor: pointer;
+  display: flex;
+  height: 110px;
+  justify-content: center;
+  width: 110px;
   @media (max-width: 820px) {
     height: 95px;
     width: 95px;
@@ -57,27 +57,27 @@ const btnTemplate = css`
     height: 35px;
     width: 35px;
   }
-`
+`;
 
 export const BtnsCommonContainer = styled.div`
   display: flex;
-  justify-content: space-between;
-  width: 100%;
   flex-wrap: wrap;
   gap: 5px;
+  justify-content: space-between;
   margin: 10px 0;
-`
+  width: 100%;
+`;
 export const CommonBtn = styled.button`
   ${btnTemplate}
-`
+`;
 export const BtnsSpecContainer = styled.div`
   display: flex;
+  gap: 5px;
   justify-content: space-between;
   width: 100%;
-  gap: 5px;
-`
+`;
 
 export const SpecBtn = styled.button`
   ${btnTemplate}
   width: 300px;
-`
+`;

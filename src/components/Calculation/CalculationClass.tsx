@@ -1,31 +1,32 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
-import { ControlPanelClass } from '@components/ControlPanel'
-import { VisibleDisplayClass } from '@containers/Display'
-import { VisibleKeypdaClass } from '@containers/Keypad'
-import { VisibleHistoryClass } from '@containers/History'
-import { ErrorBoundary } from '@components/ErrorBoundary'
-import { CalculationHelper, CalculationWrapper, HistoryHelper } from './componets'
+import { ControlPanelClass } from '@components/ControlPanel';
+import { ErrorBoundary } from '@components/ErrorBoundary';
+import { VisibleDisplayClass } from '@containers/Display';
+import { VisibleHistoryClass } from '@containers/History';
+import { VisibleKeypdaClass } from '@containers/Keypad';
+
+import { CalculationHelper, CalculationWrapper, HistoryHelper } from './componets';
 
 interface IHistoryState {
-  isShow: boolean
+  isShow: boolean;
 }
 
-export class CalculationClass extends Component<{}, IHistoryState> {
+export class CalculationClass extends Component<Record<string, unknown>, IHistoryState> {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       isShow: true,
-    }
+    };
   }
 
   handleShowHistory = () =>
     this.setState((prevState) => ({
       isShow: !prevState.isShow,
-    }))
+    }));
 
   render() {
-    const isShowHistory = this.state.isShow
+    const isShowHistory = this.state.isShow;
 
     return (
       <ErrorBoundary>
@@ -40,8 +41,8 @@ export class CalculationClass extends Component<{}, IHistoryState> {
           </HistoryHelper>
         </CalculationWrapper>
       </ErrorBoundary>
-    )
+    );
   }
 }
 
-export default CalculationClass
+export default CalculationClass;

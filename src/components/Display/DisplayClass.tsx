@@ -1,18 +1,19 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
-import { store } from '@redux/store'
-import { IDisplayProps } from '@interfaces/props'
-import { IDisplayState } from '@interfaces/state'
-import { DisplayWrapper, ExpressionField, UserValueField } from './componets'
+import { IDisplayProps } from '@interfaces/props';
+import { IDisplayState } from '@interfaces/state';
+import { store } from '@redux/store';
+
+import { DisplayWrapper, ExpressionField, UserValueField } from './componets';
 
 export class DisplayClass extends Component<IDisplayProps, IDisplayState> {
   constructor(props: IDisplayProps) {
-    super(props)
+    super(props);
 
     this.state = {
       currentValue: '0',
       expression: '',
-    }
+    };
   }
 
   componentDidMount() {
@@ -20,18 +21,18 @@ export class DisplayClass extends Component<IDisplayProps, IDisplayState> {
       this.setState({
         currentValue: this.props.currentValue,
         expression: this.props.expression,
-      })
-    })
+      });
+    });
   }
 
   render() {
-    const { currentValue, expression } = this.props
+    const { currentValue, expression } = this.props;
 
     return (
       <DisplayWrapper data-cy="display">
         <UserValueField>{currentValue}</UserValueField>
         <ExpressionField>{expression}</ExpressionField>
       </DisplayWrapper>
-    )
+    );
   }
 }

@@ -1,2 +1,2 @@
-export { HomePage } from './HomePage'
-export { HomePageClass } from './HomePageClass'
+export { HomePage } from './HomePage';
+export { HomePageClass } from './HomePageClass';

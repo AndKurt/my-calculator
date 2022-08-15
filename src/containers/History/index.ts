@@ -1,3 +1,3 @@
-import VisibleHistoryClass from './VisibleHistoryClass'
+import VisibleHistoryClass from './VisibleHistoryClass';
 
-export { VisibleHistoryClass }
+export { VisibleHistoryClass };

@@ -1,2 +1,2 @@
-export { ControlPanel } from './ControlPanel'
-export { ControlPanelClass } from './ControlPanelClass'
+export { ControlPanel } from './ControlPanel';
+export { ControlPanelClass } from './ControlPanelClass';

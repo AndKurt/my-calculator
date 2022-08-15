@@ -1,19 +1,20 @@
-import React, { MouseEvent } from 'react'
+import React, { MouseEvent } from 'react';
 
-import { keypadBtns, keypadSpecBtns } from '@constants/keypadBtns'
-import { useAppDispatch } from '@redux/hooks/hooks'
-import { activateDispatchByKeypad } from '@utils/activateDispatch'
-import { BtnsCommonContainer, BtnsSpecContainer, CommonBtn, KeyPadWrapper, SpecBtn } from './componets'
+import { keypadBtns, keypadSpecBtns } from '@constants/keypadBtns';
+import { useAppDispatch } from '@redux/hooks/hooks';
+import { activateDispatchByKeypad } from '@utils/activateDispatch';
+
+import { BtnsCommonContainer, BtnsSpecContainer, CommonBtn, KeyPadWrapper, SpecBtn } from './componets';
 
 export const Keypad = () => {
-  const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
 
   const handelClick = (e: MouseEvent<HTMLElement>) => {
-    const buttonValue = (e.target as HTMLButtonElement).value
+    const buttonValue = (e.target as HTMLButtonElement).value;
     if (buttonValue) {
-      activateDispatchByKeypad(buttonValue, dispatch)
+      activateDispatchByKeypad(buttonValue, dispatch);
     }
-  }
+  };
 
   return (
     <KeyPadWrapper onClick={handelClick} data-cy="keypad">
@@ -32,5 +33,5 @@ export const Keypad = () => {
         ))}
       </BtnsSpecContainer>
     </KeyPadWrapper>
-  )
-}
+  );
+};

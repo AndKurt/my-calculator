@@ -1,36 +1,37 @@
-import React, { MouseEvent, Component } from 'react'
+import React, { MouseEvent, Component } from 'react';
 
-import { keypadBtns, keypadSpecBtns } from '@constants/keypadBtns'
-import { OPERATOR } from '@constants/operators'
-import { IKeyPadClassProps } from '@interfaces/props'
-import { BtnsCommonContainer, BtnsSpecContainer, CommonBtn, KeyPadWrapper, SpecBtn } from './componets'
+import { keypadBtns, keypadSpecBtns } from '@constants/keypadBtns';
+import { OPERATOR } from '@constants/operators';
+import { IKeyPadClassProps } from '@interfaces/props';
+
+import { BtnsCommonContainer, BtnsSpecContainer, CommonBtn, KeyPadWrapper, SpecBtn } from './componets';
 
 export class KeypadClass extends Component<IKeyPadClassProps> {
   handelClick = (e: MouseEvent<HTMLElement>) => {
-    const buttonValue = (e.target as HTMLButtonElement).value
+    const buttonValue = (e.target as HTMLButtonElement).value;
     if (buttonValue) {
       switch (buttonValue) {
         case OPERATOR.REMOVE_LAST:
-          this.props.removeLastChar()
-          break
+          this.props.removeLastChar();
+          break;
         case OPERATOR.DOT:
-          this.props.setCurrentValue(OPERATOR.DOT)
-          break
+          this.props.setCurrentValue(OPERATOR.DOT);
+          break;
         case OPERATOR.REMOVE_ALL:
-          this.props.resetAll()
-          break
+          this.props.resetAll();
+          break;
         case OPERATOR.SWAP_SIGN:
-          this.props.swapSignValue()
-          break
+          this.props.swapSignValue();
+          break;
         case OPERATOR.EQUAL:
-          this.props.mathOperation()
-          break
+          this.props.mathOperation();
+          break;
         default:
-          this.props.setCurrentValue(buttonValue)
-          break
+          this.props.setCurrentValue(buttonValue);
+          break;
       }
     }
-  }
+  };
 
   render() {
     return (
@@ -50,6 +51,6 @@ export class KeypadClass extends Component<IKeyPadClassProps> {
           ))}
         </BtnsSpecContainer>
       </KeyPadWrapper>
-    )
+    );
   }
 }

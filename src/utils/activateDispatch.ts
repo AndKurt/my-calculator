@@ -1,28 +1,28 @@
-import { Dispatch } from 'react'
-import { AnyAction } from 'redux'
+import { Dispatch } from 'react';
 
-import { setCurrentValue, removeLastChar, resetAll, swapSignValue, mathOperation } from '@redux/reducers/calculator'
-import { OPERATOR } from '@constants/operators'
+import { OPERATOR } from '@constants/operators';
+import { setCurrentValue, removeLastChar, resetAll, swapSignValue, mathOperation } from '@redux/reducers/calculator';
+import { AnyAction } from 'redux';
 
 export const activateDispatchByKeypad = (buttonValue: string, dispatch: Dispatch<AnyAction>) => {
 	switch (buttonValue) {
 		case OPERATOR.REMOVE_LAST:
-			dispatch(removeLastChar())
-			break
+			dispatch(removeLastChar());
+			break;
 		case OPERATOR.DOT:
-			dispatch(setCurrentValue(OPERATOR.DOT))
-			break
+			dispatch(setCurrentValue(OPERATOR.DOT));
+			break;
 		case OPERATOR.REMOVE_ALL:
-			dispatch(resetAll())
-			break
+			dispatch(resetAll());
+			break;
 		case OPERATOR.SWAP_SIGN:
-			dispatch(swapSignValue())
-			break
+			dispatch(swapSignValue());
+			break;
 		case OPERATOR.EQUAL:
-			dispatch(mathOperation())
-			break
+			dispatch(mathOperation());
+			break;
 		default:
-			dispatch(setCurrentValue(buttonValue))
-			break
+			dispatch(setCurrentValue(buttonValue));
+			break;
 	}
-}
+};

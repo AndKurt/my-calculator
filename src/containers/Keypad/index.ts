@@ -1,2 +1,2 @@
-import VisibleKeypdaClass from './VisibleKeypdaClass'
-export { VisibleKeypdaClass }
+import VisibleKeypdaClass from './VisibleKeypdaClass';
+export { VisibleKeypdaClass };

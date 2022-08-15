@@ -1,2 +1,2 @@
-export { SettingsPage } from './SettingsPage'
-export { SettingsPageClass } from './SettingsPageClass'
+export { SettingsPage } from './SettingsPage';
+export { SettingsPageClass } from './SettingsPageClass';

@@ -5,4 +5,4 @@ export {
 	resetAll,
 	swapSignValue,
 	mathOperation,
-} from './calculator'
+} from './calculator';

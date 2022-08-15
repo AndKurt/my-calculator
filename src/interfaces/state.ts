@@ -1,3 +1,3 @@
-import { IDisplayProps } from './props'
+import { IDisplayProps } from './props';
 
-export interface IDisplayState extends IDisplayProps {}
+export type IDisplayState = IDisplayProps

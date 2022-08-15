@@ -1,2 +1,2 @@
-import VisibleSettingPageClass from './VisibleSettingPageClass'
-export { VisibleSettingPageClass }
+import VisibleSettingPageClass from './VisibleSettingPageClass';
+export { VisibleSettingPageClass };

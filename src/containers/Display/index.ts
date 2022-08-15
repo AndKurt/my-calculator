@@ -1,2 +1,2 @@
-import VisibleDisplayClass from './VisibleDisplayClass'
-export { VisibleDisplayClass }
+import VisibleDisplayClass from './VisibleDisplayClass';
+export { VisibleDisplayClass };

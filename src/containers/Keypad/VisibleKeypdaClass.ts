@@ -1,8 +1,8 @@
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 
-import { KeypadClass } from '@components/Keypad'
-import { AppDispatch } from '@redux/store'
-import { setCurrentValue, removeLastChar, resetAll, swapSignValue, mathOperation } from '@redux/reducers/calculator'
+import { KeypadClass } from '@components/Keypad';
+import { setCurrentValue, removeLastChar, resetAll, swapSignValue, mathOperation } from '@redux/reducers/calculator';
+import { AppDispatch } from '@redux/store';
 
 const mapDispatchToProps = (dispatch: AppDispatch) => {
   return {
@@ -11,7 +11,7 @@ const mapDispatchToProps = (dispatch: AppDispatch) => {
     resetAll: () => dispatch(resetAll()),
     swapSignValue: () => dispatch(swapSignValue()),
     mathOperation: () => dispatch(mathOperation()),
-  }
-}
+  };
+};
 
-export default connect(null, mapDispatchToProps)(KeypadClass)
+export default connect(null, mapDispatchToProps)(KeypadClass);

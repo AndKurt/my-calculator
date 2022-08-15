@@ -1,7 +1,9 @@
-import { createGlobalStyle } from 'styled-components/macro'
-import HelveticaNeue from '../assets/fonts/HelveticaNeue.ttf'
+import { createGlobalStyle } from 'styled-components/macro';
 
-import theme from './theme'
+import theme from './theme';
+
+import HelveticaNeue from '../assets/fonts/HelveticaNeue.ttf';
+
 
 interface IGlobalStyle {
 	[key: string]: string;
@@ -67,4 +69,4 @@ export const GlobalStyles =
   ::-webkit-scrollbar-thumb:hover {
     background: $blue;
   }
-`
+`;

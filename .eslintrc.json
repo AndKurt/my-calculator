@@ -1,0 +1,87 @@
+{
+  "env": {
+    "browser": true,
+    "es2020": true,
+    "node": true,
+    "jest": true,
+    "cypress/globals": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:import/typescript",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "plugins": ["import", "better-styled-components", "cypress", "unused-imports"],
+  "rules": {
+    "semi": [2, "always"],
+    "indent": 0,
+    "@typescript-eslint/no-var-requires": "off",
+    "react/no-unescaped-entities": "off",
+    "import/no-anonymous-default-export": "off",
+    "better-styled-components/sort-declarations-alphabetically": 2,
+    "import/order": [
+      "error",
+      {
+        "groups": [["external", "builtin"], "internal", ["sibling", "parent"], "index"],
+        "pathGroups": [
+          {
+            "pattern": "react*",
+            "group": "external",
+            "position": "before"
+          },
+          {
+            "pattern": "styled-components*",
+            "group": "builtin",
+            "position": "before"
+          },
+          {
+            "pattern": "@**",
+            "group": "internal",
+            "position": "after"
+          },
+          {
+            "pattern": "./**",
+            "group": "internal",
+            "position": "after"
+          }
+        ],
+        "newlines-between": "always",
+        "pathGroupsExcludedImportTypes": ["builtin"],
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        }
+      }
+    ]
+  },
+  "ignorePatterns": ["node_modules/", ".next/"],
+  "settings": {
+    "import/resolver": {
+      "alias": {
+        "map": [
+          ["@App", "./App"],
+          ["@assets", "./assets"],
+          ["@components", "./components"],
+          ["@constants", "./constants"],
+          ["@containers", "./containers"],
+          ["@redux", "./redux"],
+          ["@screens", "./screens"],
+          ["@styles", "./styles"],
+          ["@utils", "./utils"],
+          ["@interfaces", "./interfaces"]
+        ],
+        "extensions": [".js", ".jsx", ".ts", ".tsx", ".json"]
+      }
+    }
+  }
+}

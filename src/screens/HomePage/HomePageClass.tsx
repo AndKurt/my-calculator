@@ -1,12 +1,13 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
-import { CalculationClass } from '@components/Calculation'
-import { savePathToLS } from '@utils/localStorageFunc'
-import { HomeContainer, HomeWrapper } from './components'
+import { CalculationClass } from '@components/Calculation';
+import { savePathToLS } from '@utils/localStorageFunc';
+
+import { HomeContainer, HomeWrapper } from './components';
 
 export class HomePageClass extends Component {
   componentDidMount() {
-    savePathToLS(window.location.href.split('/')[3])
+    savePathToLS(window.location.href.split('/')[3]);
   }
 
   render() {
@@ -16,8 +17,8 @@ export class HomePageClass extends Component {
           <CalculationClass />
         </HomeContainer>
       </HomeWrapper>
-    )
+    );
   }
 }
 
-export default HomePageClass
+export default HomePageClass;

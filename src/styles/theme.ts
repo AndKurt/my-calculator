@@ -1,10 +1,10 @@
-import { css } from 'styled-components/macro'
+import { css } from 'styled-components/macro';
 
 // Fonts
 const font = css`
 	font-family: 'Helvetica Neue';
-	font-weight: normal;
 	font-size: 30px;
+	font-weight: normal;
 	line-height: 36px;
 	@media (max-width: 620px) {
 		font-size: 25px;
@@ -22,16 +22,16 @@ const font = css`
 		font-size: 15px;
 		line-height: 20px;
 	}
-`
+`;
 const font30 = css`
 	${font}
 	font-weight: bold;
-`
+`;
 const font32 = css`
 	${font}
 	font-size: 32px;
-	line-height: 38px;
 	font-weight: bold;
+	line-height: 38px;
 	@media (max-width: 620px) {
 		font-size: 25px;
 		line-height: 30px;
@@ -48,13 +48,13 @@ const font32 = css`
 		font-size: 15px;
 		line-height: 20px;
 	}
-`
+`;
 
 const font64 = css`
 	${font}
 	font-size: 64px;
-	line-height: 77px;
 	font-weight: bold;
+	line-height: 77px;
 	@media (max-width: 620px) {
 		font-size: 25px;
 		line-height: 30px;
@@ -71,14 +71,14 @@ const font64 = css`
 		font-size: 15px;
 		line-height: 20px;
 	}
-`
+`;
 
 // Color palette
-const white = '#FFFFFF'
-const black = '#000000'
-const lightGrey = '#F2F2F2'
-const midGrey = '#707070'
-const darkGrey = '#434343'
+const white = '#FFFFFF';
+const black = '#000000';
+const lightGrey = '#F2F2F2';
+const midGrey = '#707070';
+const darkGrey = '#434343';
 
 export default {
 	font,
@@ -94,7 +94,7 @@ export default {
 		midGrey,
 		darkGrey,
 	},
-}
+};
 
 export const themeDark = {
 	headerColor: lightGrey,
@@ -103,7 +103,7 @@ export const themeDark = {
 	bodyColor: black,
 	textColor: white,
 	borderColor: white,
-}
+};
 
 export const themeLight = {
 	headerColor: darkGrey,
@@ -112,4 +112,4 @@ export const themeLight = {
 	bodyColor: white,
 	textColor: black,
 	borderColor: black,
-}
+};

@@ -1,2 +1,2 @@
-export { Calculation } from './Calculation'
-export { CalculationClass } from './CalculationClass'
+export { Calculation } from './Calculation';
+export { CalculationClass } from './CalculationClass';

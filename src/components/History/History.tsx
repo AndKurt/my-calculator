@@ -1,15 +1,16 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react';
 
-import { IHistoryProps } from '@interfaces/props'
-import { HistoryList, HistoryWrapper, ListItem } from './componets'
-import { useAppSelector } from '@redux/hooks/hooks'
+import { IHistoryProps } from '@interfaces/props';
+import { useAppSelector } from '@redux/hooks/hooks';
+
+import { HistoryList, HistoryWrapper, ListItem } from './componets';
 
 export const History = ({ isShowHistory }: IHistoryProps) => {
-  const { arrayExpressions } = useAppSelector((state) => state.calculatorReducer)
+  const { arrayExpressions } = useAppSelector((state) => state.calculatorReducer);
 
   useEffect(() => {
-    localStorage.setItem('history', JSON.stringify(arrayExpressions))
-  }, [arrayExpressions])
+    localStorage.setItem('history', JSON.stringify(arrayExpressions));
+  }, [arrayExpressions]);
 
   return (
     <HistoryWrapper data-cy="history">
@@ -23,5 +24,5 @@ export const History = ({ isShowHistory }: IHistoryProps) => {
           ))}
       </HistoryList>
     </HistoryWrapper>
-  )
-}
+  );
+};

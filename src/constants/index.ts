@@ -1,2 +1,2 @@
-export * from './router'
-export * from './keypadBtns'
+export * from './router';
+export * from './keypadBtns';

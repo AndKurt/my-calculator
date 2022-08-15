@@ -1,33 +1,33 @@
-import React, { Component, ErrorInfo } from 'react'
+import React, { Component } from 'react';
 
-import { ErrorMessage } from './componets'
+import { ErrorMessage } from './componets';
 
 interface IErrorBoundaryProps {
-  children?: JSX.Element
+  children?: JSX.Element;
 }
 
 interface IErrorBoundaryState {
-  error: boolean
+  error: boolean;
 }
 
 export class ErrorBoundary extends Component<IErrorBoundaryProps, IErrorBoundaryState> {
   constructor(props: IErrorBoundaryProps) {
-    super(props)
+    super(props);
 
     this.state = {
       error: false,
-    }
+    };
   }
 
   public static getDerivedStateFromError(_: Error) {
     return {
       error: true,
-    }
+    };
   }
 
   render() {
-    const { error } = this.state
-    const { children } = this.props
+    const { error } = this.state;
+    const { children } = this.props;
     if (error) {
       return (
         <ErrorMessage>
@@ -35,10 +35,10 @@ export class ErrorBoundary extends Component<IErrorBoundaryProps, IErrorBoundary
           <br />
           Try reloading the page or contact the administrator.
         </ErrorMessage>
-      )
+      );
     }
-    return children
+    return children;
   }
 }
 
-export default ErrorBoundary
+export default ErrorBoundary;

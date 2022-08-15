@@ -1,16 +1,17 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 
-import { ControlPanel } from '@components/ControlPanel'
-import { Display } from '@components/Display'
-import { Keypad } from '@components/Keypad'
-import { History } from '@components/History'
-import { ErrorBoundary } from '@components/ErrorBoundary'
-import { CalculationHelper, CalculationWrapper, HistoryHelper } from './componets'
+import { ControlPanel } from '@components/ControlPanel';
+import { Display } from '@components/Display';
+import { ErrorBoundary } from '@components/ErrorBoundary';
+import { History } from '@components/History';
+import { Keypad } from '@components/Keypad';
+
+import { CalculationHelper, CalculationWrapper, HistoryHelper } from './componets';
 
 export const Calculation = () => {
-  const [isShowHistory, setIsShowHistory] = useState(true)
+  const [isShowHistory, setIsShowHistory] = useState(true);
 
-  const handleShowHistory = () => setIsShowHistory((prevState) => !prevState)
+  const handleShowHistory = () => setIsShowHistory((prevState) => !prevState);
 
   return (
     <ErrorBoundary>
@@ -25,5 +26,5 @@ export const Calculation = () => {
         </HistoryHelper>
       </CalculationWrapper>
     </ErrorBoundary>
-  )
-}
+  );
+};

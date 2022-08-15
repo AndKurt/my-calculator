@@ -1,13 +1,14 @@
-import React, { useEffect } from 'react'
+import React, { useEffect } from 'react';
 
-import { Calculation } from '@components/Calculation'
-import { savePathToLS } from '@utils/localStorageFunc'
-import { HomeContainer, HomeWrapper } from './components'
+import { Calculation } from '@components/Calculation';
+import { savePathToLS } from '@utils/localStorageFunc';
+
+import { HomeContainer, HomeWrapper } from './components';
 
 export const HomePage = () => {
   useEffect(() => {
-    savePathToLS(window.location.href.split('/')[3])
-  }, [])
+    savePathToLS(window.location.href.split('/')[3]);
+  }, []);
 
   return (
     <HomeWrapper>
@@ -15,5 +16,5 @@ export const HomePage = () => {
         <Calculation />
       </HomeContainer>
     </HomeWrapper>
-  )
-}
+  );
+};

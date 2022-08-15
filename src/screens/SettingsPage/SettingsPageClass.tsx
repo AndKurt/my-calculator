@@ -1,32 +1,33 @@
-import React, { ChangeEvent, Component } from 'react'
+import React, { ChangeEvent, Component } from 'react';
 
-import { THEME } from '@constants/operators'
-import { ISettingsPageClassProps } from '@interfaces/props'
-import { getDataFromLS } from '@utils/localStorageFunc'
-import { ClearBtn, Select, SettingsContainer, SettingsWrapper } from './components'
+import { THEME } from '@constants/operators';
+import { ISettingsPageClassProps } from '@interfaces/props';
+import { getDataFromLS } from '@utils/localStorageFunc';
+
+import { ClearBtn, Select, SettingsContainer, SettingsWrapper } from './components';
 
 export class SettingsPageClass extends Component<ISettingsPageClassProps, { theme: string }> {
   constructor(props: ISettingsPageClassProps) {
-    super(props)
+    super(props);
 
     this.state = {
       theme: getDataFromLS('theme', THEME.LIGHT),
-    }
+    };
   }
 
   handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    const currentTheme = e.target.value
-    this.props.handleChangeTheme(currentTheme)
-    this.setState({ theme: currentTheme })
-    localStorage.setItem('theme', JSON.stringify(currentTheme))
-  }
+    const currentTheme = e.target.value;
+    this.props.handleChangeTheme(currentTheme);
+    this.setState({ theme: currentTheme });
+    localStorage.setItem('theme', JSON.stringify(currentTheme));
+  };
 
   handleClearAll = () => {
-    this.props.clearHistory()
-  }
+    this.props.clearHistory();
+  };
 
   render() {
-    const { theme } = this.state
+    const { theme } = this.state;
 
     return (
       <SettingsWrapper>
@@ -40,8 +41,8 @@ export class SettingsPageClass extends Component<ISettingsPageClassProps, { them
           <ClearBtn onClick={this.handleClearAll}>Clear All History</ClearBtn>
         </SettingsContainer>
       </SettingsWrapper>
-    )
+    );
   }
 }
 
-export default SettingsPageClass
+export default SettingsPageClass;

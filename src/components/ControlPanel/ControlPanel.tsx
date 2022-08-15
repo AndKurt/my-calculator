@@ -1,7 +1,8 @@
-import React from 'react'
+import React from 'react';
 
-import { IControlPanelProps } from '@interfaces/props'
-import { ControlPanelWrapper, ShowHistoryBtn } from './componets'
+import { IControlPanelProps } from '@interfaces/props';
+
+import { ControlPanelWrapper, ShowHistoryBtn } from './componets';
 
 export const ControlPanel = ({ isShowHistory, handleShowHistory }: IControlPanelProps) => {
   return (
@@ -10,5 +11,5 @@ export const ControlPanel = ({ isShowHistory, handleShowHistory }: IControlPanel
         {!isShowHistory ? 'Hide' : 'Show'}
       </ShowHistoryBtn>
     </ControlPanelWrapper>
-  )
-}
+  );
+};

@@ -13,6 +13,7 @@
     "@types/react-dom": "^18.0.0",
     "@types/redux-logger": "^3.0.9",
     "cypress": "^10.3.0",
+    "eslint-import-resolver-alias": "^1.1.2",
     "gh-pages": "^4.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -35,7 +36,9 @@
     "cypress:open": "npm run cypress:start:wait -- \"cypress open\"",
     "cypress:run": "npm run cypress:start:wait -- \"cypress run\"",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "lint": "eslint .",
+    "lint:fix": "npm run lint -- --fix"
   },
   "eslintConfig": {
     "extends": [
@@ -66,12 +69,14 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-config-standard": "^14.1.0",
     "eslint-config-standard-react": "^9.2.0",
+    "eslint-plugin-better-styled-components": "^1.1.2",
     "eslint-plugin-cypress": "^2.7.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-react": "^7.29.4",
     "eslint-plugin-react-hooks": "^4.3.0",
+    "eslint-plugin-unused-imports": "^2.0.0",
     "husky": "^8.0.1",
     "lint-staged": "^12.4.1",
     "prettier": "2.7.1",
