@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 
 import { IHistoryProps } from '@interfaces/props';
 import { store } from '@redux/store';
 
 import { HistoryList, HistoryWrapper, ListItem } from './componets';
 
-export class HistoryClass extends Component<IHistoryProps> {
+export class HistoryClass extends PureComponent<IHistoryProps> {
   constructor(props: IHistoryProps) {
     super(props);
 

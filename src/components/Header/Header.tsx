@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 
 import { HOME_CLASS_PAGE_ROUTE, HOME_PAGE_ROUTE, SETTINGS_PAGE_ROUTE } from '@constants/router';
 
@@ -11,17 +11,21 @@ const navBtnsData = [
 ];
 
 export const Header = () => {
+  const memoNavigationBtns = useMemo(
+    () =>
+      navBtnsData.map(({ name, path }) => (
+        <NavigationBtn key={name} to={path} data-cy={name}>
+          {name}
+        </NavigationBtn>
+      )),
+    [navBtnsData]
+  );
+
   return (
     <HeaderWrapper>
       <HeaderContainer>
         Calculator App
-        <nav>
-          {navBtnsData.map(({ name, path }) => (
-            <NavigationBtn key={name} to={path} data-cy={name}>
-              {name}
-            </NavigationBtn>
-          ))}
-        </nav>
+        <nav>{memoNavigationBtns}</nav>
       </HeaderContainer>
     </HeaderWrapper>
   );

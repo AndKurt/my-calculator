@@ -1,4 +1,4 @@
-import React, { MouseEvent, Component } from 'react';
+import React, { MouseEvent, PureComponent } from 'react';
 
 import { keypadBtns, keypadSpecBtns } from '@constants/keypadBtns';
 import { OPERATOR } from '@constants/operators';
@@ -6,7 +6,7 @@ import { IKeyPadClassProps } from '@interfaces/props';
 
 import { BtnsCommonContainer, BtnsSpecContainer, CommonBtn, KeyPadWrapper, SpecBtn } from './componets';
 
-export class KeypadClass extends Component<IKeyPadClassProps> {
+export class KeypadClass extends PureComponent<IKeyPadClassProps> {
   handelClick = (e: MouseEvent<HTMLElement>) => {
     const buttonValue = (e.target as HTMLButtonElement).value;
     if (buttonValue) {

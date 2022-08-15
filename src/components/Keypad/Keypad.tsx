@@ -1,4 +1,4 @@
-import React, { MouseEvent } from 'react';
+import React, { MouseEvent, useMemo } from 'react';
 
 import { keypadBtns, keypadSpecBtns } from '@constants/keypadBtns';
 import { useAppDispatch } from '@redux/hooks/hooks';
@@ -9,6 +9,26 @@ import { BtnsCommonContainer, BtnsSpecContainer, CommonBtn, KeyPadWrapper, SpecB
 export const Keypad = () => {
   const dispatch = useAppDispatch();
 
+  const memoKeypadSpecBtns = useMemo(
+    () =>
+      keypadSpecBtns.map(({ view }) => (
+        <SpecBtn key={view} value={view} data-cy={`calc-btn-${view}`}>
+          {view}
+        </SpecBtn>
+      )),
+    [keypadSpecBtns]
+  );
+
+  const memoKeypadBtns = useMemo(
+    () =>
+      keypadBtns.map(({ view }) => (
+        <CommonBtn key={view} value={view} data-cy={`calc-btn-${view}`}>
+          {view}
+        </CommonBtn>
+      )),
+    [keypadBtns]
+  );
+
   const handelClick = (e: MouseEvent<HTMLElement>) => {
     const buttonValue = (e.target as HTMLButtonElement).value;
     if (buttonValue) {
@@ -18,20 +38,8 @@ export const Keypad = () => {
 
   return (
     <KeyPadWrapper onClick={handelClick} data-cy="keypad">
-      <BtnsCommonContainer>
-        {keypadBtns.map(({ view }) => (
-          <CommonBtn key={view} value={view} data-cy={`calc-btn-${view}`}>
-            {view}
-          </CommonBtn>
-        ))}
-      </BtnsCommonContainer>
-      <BtnsSpecContainer>
-        {keypadSpecBtns.map(({ view }) => (
-          <SpecBtn key={view} value={view} data-cy={`calc-btn-${view}`}>
-            {view}
-          </SpecBtn>
-        ))}
-      </BtnsSpecContainer>
+      <BtnsCommonContainer>{memoKeypadBtns}</BtnsCommonContainer>
+      <BtnsSpecContainer>{memoKeypadSpecBtns}</BtnsSpecContainer>
     </KeyPadWrapper>
   );
 };
