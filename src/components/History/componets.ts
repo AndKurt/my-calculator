@@ -22,7 +22,7 @@ export const HistoryWrapper = styled.div`
 export const HistoryList = styled.ul<IProps>`
   width: 100%;
   transition: 0.5s;
-  opacity: ${({ isShowHistory }) => (isShowHistory ? 1 : 0)};
+  opacity: ${({ isShowHistory }) => (!isShowHistory ? 1 : 0)};
   margin-top: 20px;
   max-height: 650px;
   overflow: auto;
@@ -32,7 +32,7 @@ export const ListItem = styled.li<IProps>`
   width: 100%;
   list-style: none;
   transition: 0.5s;
-  opacity: ${({ isShowHistory }) => (isShowHistory ? 1 : 0)};
+  opacity: ${({ isShowHistory }) => (!isShowHistory ? 1 : 0)};
   margin-top: 20px;
   color: ${({ theme }) => theme.textColor};
   ${theme.fontSizes.font30}

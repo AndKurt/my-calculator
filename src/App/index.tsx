@@ -1,7 +1,7 @@
 import React from 'react'
-import { store } from '@redux/store'
 import { Provider } from 'react-redux'
 
+import { store } from '@redux/store'
 import { Layout } from '@components/Layout'
 
 export const App = () => {

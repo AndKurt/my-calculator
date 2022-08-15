@@ -1,30 +1,30 @@
 export type ChangeTheme = {
-	handleChangeTheme: (theme: string) => void,
+  handleChangeTheme: (theme: string) => void
 }
 
 export interface ISettingsPageClassProps extends ChangeTheme {
-	clearHistory: () => void;
+  clearHistory: () => void
 }
 
 export interface IControlPanelProps {
-	isShowHistory: boolean;
-	handleShowHistory: () => void;
+  isShowHistory: boolean
+  handleShowHistory: () => void
 }
 
 export interface IDisplayProps {
-	currentValue: string;
-	expression: string;
+  currentValue: string
+  expression: string
 }
 
 export interface IHistoryProps {
-	isShowHistory: boolean;
-	arrayExpressions?: string[];
+  isShowHistory: boolean
+  arrayExpressions?: string[]
 }
 
 export interface IKeyPadClassProps {
-	setCurrentValue: (num: number | string) => void;
-	removeLastChar: () => void;
-	resetAll: () => void;
-	swapSignValue: () => void;
-	mathOperation: () => void;
+  setCurrentValue: (num: number | string) => void
+  removeLastChar: () => void
+  resetAll: () => void
+  swapSignValue: () => void
+  mathOperation: () => void
 }

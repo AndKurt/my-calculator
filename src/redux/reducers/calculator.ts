@@ -1,5 +1,6 @@
-import { OPERATOR } from '@constants/operators'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+
+import { OPERATOR } from '@constants/operators'
 import { checkMissingBrackets, expressionCalculator, getExpressionArray } from '@utils/calculatorMath'
 import { checkDotsInLastValue, countDots, countMathSigns } from '@utils/helpers'
 import { roundValue } from '@utils/helpers'
