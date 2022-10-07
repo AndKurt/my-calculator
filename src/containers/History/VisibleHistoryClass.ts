@@ -4,8 +4,7 @@ import { connect } from 'react-redux'
 
 const mapStateToProps = (state: RootState) => {
 	return {
-		arrayExpressions:
-			state.calculatorReducer.arrayExpressions,
+		arrayExpressions: state.calculatorReducer.arrayExpressions,
 	}
 }
 

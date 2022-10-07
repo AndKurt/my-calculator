@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components/macro'
-import theme from '@styles/theme'
 
 export const KeyPadWrapper = styled.div`
 	display: flex;

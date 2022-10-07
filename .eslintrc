@@ -1,7 +1,7 @@
 {
-  "extends": ["standard", "standard-react", "prettier", "prettier/react"],
+  "extends": ["standard", "standard-react", "prettier"],
   "plugins": ["prettier", "react-hooks", "cypress"],
-  "parser": "babel-eslint",
+  "parser": "@typescript-eslint/parser",
   "env": {
     "node": true,
     "browser": true,
@@ -9,7 +9,7 @@
     "cypress/globals": true
   },
   "rules": {
-    "arrow-parens": ["error", "as-needed"],
+    "arrow-parens": ["error", "always"],
     "semi": "error",
     "prefer-destructuring": "error",
     "max-len": [
@@ -25,21 +25,15 @@
     "react-hooks/rules-of-hooks": "error",
     "react/jsx-closing-tag-location": 2,
     "react/jsx-closing-bracket-location": "off",
-    "react/jsx-max-props-per-line": [
-      2,
-      {
-        "maximum": 2,
-        "when": "always"
-      }
-    ],
     "react/jsx-filename-extension": [
       2,
       {
-        "extensions": [".jsx"]
+        "extensions": [".tsx", ".ts"]
       }
     ],
     "jsx-quotes": ["error", "prefer-double"],
     "comma-dangle": [2, "always-multiline"],
+    "react/jsx-handler-names": "off",
     "prefer-const": [
       "error",
       {
@@ -52,9 +46,10 @@
   },
   "overrides": [
     {
-      "files": ["src/index.js"],
+      "files": ["*.ts", "*.tsx"],
       "rules": {
         "react/jsx-filename-extension": "off",
+        "no-undef": "off",
         "prettier/prettier": [
           "error",
           {

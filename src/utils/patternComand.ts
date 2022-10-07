@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 export class Calculator{
 	public value: number | null
 	constructor() {

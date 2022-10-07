@@ -1,5 +1,4 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
-import { logger } from 'redux-logger'
 import { calculatorReducer } from './reducers/calculator'
 
 const rootReducer = combineReducers({ calculatorReducer })
@@ -7,10 +6,7 @@ const rootReducer = combineReducers({ calculatorReducer })
 export const setupStore = () => {
 	return configureStore({
 		reducer: rootReducer,
-		middleware: (getDefaultMiddleware) => [
-			...getDefaultMiddleware(),
-			//logger
-		],
+		middleware: (getDefaultMiddleware) => [...getDefaultMiddleware()],
 	})
 }
 

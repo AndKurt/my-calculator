@@ -6,6 +6,7 @@ import { IKeyPadClassProps } from '@interfaces/props'
 
 export class KeypadClass extends Component<IKeyPadClassProps> {
 	handelClick = (e: MouseEvent<HTMLElement>) => {
+		// eslint-disable-next-line prettier/prettier
 		const buttonValue = (e.target as HTMLButtonElement).value
 		if (buttonValue) {
 			switch (buttonValue) {
@@ -33,7 +34,7 @@ export class KeypadClass extends Component<IKeyPadClassProps> {
 
 	render() {
 		return (
-			<KeyPadWrapper onClick={this.handelClick} data-cy='keypad'>
+			<KeyPadWrapper onClick={this.handelClick} data-cy="keypad">
 				<BtnsCommonContainer>
 					{keypadBtns.map(({ view }) => (
 						<CommonBtn key={view} value={view} data-cy={`calc-btn-${view}`}>

@@ -7,8 +7,7 @@ export const DisplayWrapper = styled.div`
 	height: 160px;
 	width: 100%;
 	padding: 10px 30px;
-	border-bottom: 2px solid
-		${({ theme }) => theme.borderColor};
+	border-bottom: 2px solid ${({ theme }) => theme.borderColor};
 `
 
 export const ExpressionField = styled.p`

@@ -18,7 +18,7 @@ export class CalculationClass extends Component<{}, IHistoryState> {
 		}
 	}
 
-	handleShowHistory = () =>
+	onShowHistory = () =>
 		this.setState((prevState) => ({
 			isShow: !prevState.isShow,
 		}))
@@ -34,7 +34,7 @@ export class CalculationClass extends Component<{}, IHistoryState> {
 						<VisibleKeypdaClass />
 					</CalculationHelper>
 					<HistoryHelper data-cy="history-helper" className={isShowHistory ? 'active' : ''}>
-						<ControlPanelClass isShowHistory={isShowHistory} handleShowHistory={this.handleShowHistory} />
+						<ControlPanelClass isShowHistory={isShowHistory} handleShowHistory={this.onShowHistory} />
 						<VisibleHistoryClass isShowHistory={isShowHistory} />
 					</HistoryHelper>
 				</CalculationWrapper>

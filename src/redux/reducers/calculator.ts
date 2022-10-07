@@ -1,8 +1,7 @@
-import { MAX_INPUT, OPERATOR } from '@constants/operators'
-import { createSlice, current, PayloadAction } from '@reduxjs/toolkit'
+import { OPERATOR } from '@constants/operators'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { checkMissingBrackets, expressionCalculator, getExpressionArray } from '@utils/calculatorMath'
-import { checkDotsInLastValue, countDots, countMathSigns, findLastIndexMathSign } from '@utils/helpers'
-import { roundValue } from '@utils/helpers'
+import { checkDotsInLastValue, countDots, countMathSigns, roundValue } from '@utils/helpers'
 import { getDataFromLS } from '@utils/localStorageFunc'
 
 export interface ICalculatorStore {
@@ -32,9 +31,9 @@ export const calculatorSlice = createSlice({
 	initialState,
 	reducers: {
 		setCurrentValue: (state, action: PayloadAction<string>) => {
-			const currentValue = state.currentValue
+			const { currentValue } = state
 			const operand = action.payload
-			const expression = state.expression
+			const { expression } = state
 			const lastSymbol = expression[expression.length - 1]
 			const lastExpression = state.expression
 			const missingBracket = checkMissingBrackets(lastExpression).brackets
@@ -148,8 +147,8 @@ export const calculatorSlice = createSlice({
 		},
 
 		removeLastChar: (state) => {
-			const expression = state.expression
-			const currentValue = state.currentValue
+			const { expression } = state
+			const { currentValue } = state
 			if (currentValue.length > 1) {
 				state.currentValue = currentValue.slice(0, -1)
 				state.expression = expression.slice(0, -1)
@@ -169,7 +168,7 @@ export const calculatorSlice = createSlice({
 		},
 
 		swapSignValue: (state) => {
-			const expression = state.expression
+			const { expression } = state
 			const lastSymbol = expression.slice(-1)
 			const isMinusActive = expression.slice(-5) === '*(-1)'
 
@@ -184,7 +183,7 @@ export const calculatorSlice = createSlice({
 
 		mathOperation: (state) => {
 			const missingBracket = checkMissingBrackets(state.expression).brackets
-			let lastExpression = state.expression
+			const lastExpression = state.expression
 			const lastSymbol = lastExpression[lastExpression.length - 1]
 			let passedExpression = ''
 
@@ -212,7 +211,7 @@ export const calculatorSlice = createSlice({
 			if (passedExpression) {
 				const expressionArray = getExpressionArray(passedExpression)
 
-				let result = roundValue(expressionCalculator(expressionArray))
+				const result = roundValue(expressionCalculator(expressionArray))
 				state.currentValue = result
 				state.expression = result
 

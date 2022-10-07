@@ -21,7 +21,4 @@ export const keypadBtns = [
 	{ view: '-' },
 ]
 
-export const keypadSpecBtns = [
-	{ view: 'CE' },
-	{ view: '=' },
-]
+export const keypadSpecBtns = [{ view: 'CE' }, { view: '=' }]

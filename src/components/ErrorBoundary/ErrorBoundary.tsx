@@ -1,4 +1,4 @@
-import React, { Component, ErrorInfo } from 'react'
+import React, { Component } from 'react'
 import { ErrorMessage } from './componets'
 
 interface IErrorBoundaryProps {
@@ -18,6 +18,7 @@ export class ErrorBoundary extends Component<IErrorBoundaryProps, IErrorBoundary
 		}
 	}
 
+	// eslint-disable-next-line prettier/prettier
 	public static getDerivedStateFromError(_: Error) {
 		return {
 			error: true,

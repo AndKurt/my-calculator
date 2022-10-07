@@ -83,8 +83,8 @@ export const getExpressionArray = (expr: string) => {
 
 export const expressionCalculator = (newArr: string[]) => {
 	let valueInBrackets: any = []
-	let openBracketIndex = newArr.lastIndexOf('(')
-	let closedBracketIndex = newArr.indexOf(')', openBracketIndex)
+	const openBracketIndex = newArr.lastIndexOf('(')
+	const closedBracketIndex = newArr.indexOf(')', openBracketIndex)
 	if (openBracketIndex !== -1) {
 		valueInBrackets = newArr.slice(openBracketIndex + 1, closedBracketIndex)
 		valueInBrackets = calculate(calculate(valueInBrackets, FIRST_PRIORITY_OPERATORS), SECOND_PRIORITY_OPERATORS).join()
@@ -140,5 +140,6 @@ export const checkMissingBrackets = (expr: string) =>
 			}
 			return acc
 		},
-		{ brackets: 0 }
+		// eslint-disable-next-line prettier/prettier
+		{ brackets: 0 },
 	)
